@@ -11,19 +11,22 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
+#include <unistd.h>
 
-stack	*ft_lstnew(int *value)
+t_stack	*ft_lstnew(void *value)
 {
-	stack	*new;
+	t_stack	*new;
 
-	new = malloc(sizeof (stack));
-	if (new == NULL)
+	new = malloc(sizeof (t_stack));
+	if (new == NULL)	
 		return (NULL);
 	new->value = value;
+	new->prev = NULL;
 	new->next = NULL;
 	return (new);
 }
-stack	*ft_lstlast(stack *lst)
+t_stack	*ft_lstlast(t_stack *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -33,24 +36,29 @@ stack	*ft_lstlast(stack *lst)
 	}
 	return (lst);
 }
-void	ft_lstadd_back(stack **lst, stack *new)
+
+void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
-	stack	*ptr;
+	t_stack	*last;
 
 	if (!new || !lst)
 		return ;
-	if (*lst == NULL)
+	if (*lst == NULL)	
 		*lst = new;
 	else
 	{
-		ptr = ft_lstlast(*lst);
-		ptr->next = new;
+		last = ft_lstlast(*lst);
+		new->prev = last;
+		last->next = new;
 	}
 }
-void	ft_lstadd_front(stack **lst, stack *new)
+
+
+void	ft_lstadd_front(t_stack **lst, t_stack *new)
 {
 	if (!lst || !new)
 		return ;
 	new->next = *lst;
+	new->prev = NULL;
 	*lst = new;
 }
