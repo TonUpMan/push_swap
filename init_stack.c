@@ -12,5 +12,13 @@
 
 #include "push_swap.h"
 
-filling_stack(t_stack a, char **argv)
-        split -> atoi -> lstnew
+t_stack *filling_stack(t_stack a, int argc, char **argv)
+{
+        int i;
+
+        i = (argc - 1);
+        while (i > 1)
+        {
+            ft_split(argv)
+        }
+}

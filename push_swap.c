@@ -30,7 +30,7 @@ int main(int argc, char **argv)
         if (check == 0)
             return (0);
 ///////////////////////////////////////////////////////////////        
-        filling_stack(t_stack a, char **argv);
+        filling_stack(t_stack a, int argc, char **argv);
 
                                     //init stack
 

@@ -12,6 +12,18 @@
 
 #include "push_swap.h"
 
+size_t	ft_strlen(const char *c)
+{
+	size_t	i;
+
+	i = 0;
+	while (c[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
 int	ft_isdigit(int c)
 {
 	if ((c < 58 && c > 47) || c == 45 || c == 43)
@@ -54,4 +66,30 @@ int ft_atoi(char *argv)
 	if (n == -1)
 		tmp *= n;
 	return (tmp);
+}
+
+char	*ft_calloc(size_t nmemb, size_t size)
+{
+	char				*ptr;
+	unsigned long long	totall;
+	unsigned int		i;
+
+	if (nmemb == 0 || size == 0)
+	{
+		nmemb = 1;
+		size = 1;
+	}
+	totall = nmemb * size;
+	if (totall / size != nmemb)
+		return (NULL);
+	ptr = malloc(totall);
+	if (ptr == NULL)
+		return (NULL);
+	i = 0;
+	while (i < totall)
+	{
+		ptr[i] = '\0';
+		i++;
+	}
+	return (ptr);
 }
