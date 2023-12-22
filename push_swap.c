@@ -14,7 +14,8 @@
 
 int main(int argc, char **argv)
 {
-    int check;
+    int     check;
+    t_stack a;
 
     check = 0;
     if (argc > 1)

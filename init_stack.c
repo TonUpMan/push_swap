@@ -10,5 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
 filling_stack(t_stack a, char **argv)
         split -> atoi -> lstnew
