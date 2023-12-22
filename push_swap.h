@@ -19,14 +19,18 @@
 typedef struct s_list
 {
 	void			*value;
+	void			*index;
     struct s_list   *prev;
 	struct s_list	*next;
 } t_stack;
 
 t_stack	*ft_lstnew(void *value);
-void	ft_lstadd_back(t_stack **lst, t_stack *new);
 t_stack	*ft_lstlast(t_stack *lst);
+void	ft_lstadd_back(t_stack **lst, t_stack *new);
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
+void    put_error(void);
 int		check_if(int argc, char **argv);
+int		ft_atoi(const char *nptr);
+int		ft_isdigit(int c);
 
 #endif

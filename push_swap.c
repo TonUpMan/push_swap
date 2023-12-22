@@ -21,7 +21,11 @@ int main(int argc, char **argv)
     {
         check = check_if(argc, argv);
         if (check == 0)
+        {
+            put_error;
             return (0);
+        }
+        
     }
     return (0);
 }

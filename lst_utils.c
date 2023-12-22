@@ -22,6 +22,7 @@ t_stack	*ft_lstnew(void *value)
 	if (new == NULL)	
 		return (NULL);
 	new->value = value;
+	new->index = index;
 	new->prev = NULL;
 	new->next = NULL;
 	return (new);
