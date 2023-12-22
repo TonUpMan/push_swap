@@ -1,12 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/22 11:31:45 by qdeviann          #+#    #+#             */
+/*   Updated: 2023/12/22 11:31:48 by qdeviann         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 int	ft_isdigit(int c)
 {
-	if (c < 58 && c > 47)
-		return (2048);
+	if ((c < 58 && c > 47) || c == 45 || c == 43)
+		return (1);
 	else
 		return (0);
 }
-int     ft_atoi(char *argv)
+int	ft_isprint(int c)
+{
+	if (c > 32 && c < 127)
+		return (1);
+	else
+		return (0);
+}
+
+int ft_atoi(char *argv)
 {
     int	i;
 	int	tmp;
