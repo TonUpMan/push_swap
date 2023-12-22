@@ -1,11 +1,13 @@
-SRCS = push_swap.c \
+#SRCS = push_swap.c \
 	lst_utils.c \
 	parsing.c \
-	utils.c \
+	init_stack.c \
+
+SRCS = main.c
 
 OBJS = $(SRCS:.c=.o)
 
-NAME = ./Push_Swap
+NAME = Push_Swap
 
 CC = clang
 
@@ -14,16 +16,19 @@ CFLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) -o $(NAME) $(OBJS)  @(cd $(libft) && $(MAKE))
+	@(cd libft && $(MAKE))
+	$(CC) -o $(NAME) ./libft/libft.a $(OBJS)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $(SRCS) -I Includes
+	$(CC) $(CFLAGS) -c $(SRCS) -I /libft
 
 clean : 
-	rm -rf $(OBJS) @(cd $(libft) && $(MAKE) $@)
+	@(cd libft && $(MAKE) $@)
+	rm -rf $(OBJS)
 
 fclean : clean
-	rm -rf $(NAME) @(cd $(libft) && $(MAKE) $@)
+	@(cd libft && $(MAKE) $@)
+	rm -rf $(NAME)
 
 re : fclean all
 
