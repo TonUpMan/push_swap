@@ -27,5 +27,6 @@ t_stack	*ft_lstnew(void *value);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
 t_stack	*ft_lstlast(t_stack *lst);
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
+int		check_if(int argc, char **argv);
 
 #endif

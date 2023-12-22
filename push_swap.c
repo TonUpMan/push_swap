@@ -14,9 +14,14 @@
 
 int main(int argc, char **argv)
 {
+    int check;
+
+    check = 0;
     if (argc > 3)
     {
-        
+        check = check_if(argc, argv);
+        if (check == 0)
+            return (0);
     }
     return (0);
 }

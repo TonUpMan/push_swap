@@ -24,23 +24,53 @@ static int check_if_digit(argv)
     i = 0;
     while (argv[i] != '\0')
     {
-        if ()
+        if (argv[i] < 48 && argv[i] > 57)
+            return (0);
+        i++;
     }
+    return (1);
 }
 
-static int check_if_double(argv)
-{
-    
-}
-void    check_if(int argc, char **argv)
+static int check_if_double(int argc, char **argv)
 {
     int i;
+    int j;
+    int k;
 
     i = (argc - 1);
-    while (i > 1)
+    j = 1;
+    k = 2;
+    while (k < i)
     {
-        check_if_digit(argv[i]);
-        i--;
+        if (argv[k] == argv[j])
+            return (0);
+        j++;
+        k++;
     }
 
+}
+int    check_if(int argc, char **argv)
+{
+    int i;
+    int check;
+
+    i = (argc - 1);
+    check = 1;
+    while (i > 1)
+    {
+        check = check_if_digit(argv[i]);
+        if (check == 0)
+        {
+            put_error;
+            return (0);
+        }
+        i--;
+    }
+    check = check_if_double(argc, argv);
+    if (check == 0)
+    {
+        put_error;
+        return (0);
+    }
+    return (1);
 }
