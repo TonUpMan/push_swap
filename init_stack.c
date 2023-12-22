@@ -19,6 +19,6 @@ t_stack *filling_stack(t_stack a, int argc, char **argv)
         i = (argc - 1);
         while (i > 1)
         {
-            ft_split(argv)
+            ft_split(argv, ' ');
         }
 }
