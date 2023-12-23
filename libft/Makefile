@@ -60,17 +60,17 @@ CFLAGS = -Wall -Werror -Wextra
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	ar -rsc $(NAME) $(OBJS)
-
+	@ar -rsc $(NAME) $(OBJS)
+	
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< -I includes
+	@$(CC) $(CFLAGS) -c $< -I libft.h
 
 clean : 
-	rm -rf $(OBJS) $(B_OBJS)
-
+	@rm -rf $(OBJS) libft.h.gch
+	
 fclean : clean
-	rm -rf $(NAME)
-
+	@rm -rf $(NAME)
+	
 re : fclean all
 
 .PHONY : clean fclean re bonus all
