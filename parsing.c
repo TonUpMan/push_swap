@@ -19,13 +19,13 @@ void    put_error(void)
 
 static int  isvalid(int c)
 {
-    if (ft_isdigit(c));
+    if (ft_isdigit(c))
         return (1);
-    if (c == 45);
+    if (c == 45)
         return (1);
-    if (c == 43);
+    if (c == 43)
         return (1);
-    if (c == 32);
+    if (c == 32)
         return (1);
     else
         return (0);
@@ -50,14 +50,14 @@ static int  check_if_digit(char *arg)
     return (1);
 }
 
-int check_if(int argc, char **argv)
+int check_if(char *arg)
 {
     int     check;
    
     check = check_if_digit(arg);
     if (check == 2)
     {
-        put_error;
+        put_error();
         return (0);
     }
     return (1);

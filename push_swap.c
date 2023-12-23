@@ -27,8 +27,8 @@ static char    *ft_join(int argc, char **argv, char *arg)
 
 int main(int argc, char **argv)
 {
-    char    *arg;
-    t_stack a;
+    char    *arg = NULL;
+//    t_stack a;
 
     if (argc > 2)
     {
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 ///////////////////////////////////////////////////////////////
         if (!check_if(arg))
             return (0);
-        ft_print("%s", arg);
+        ft_printf("%s", arg);
 ///////////////////////////////////////////////////////////////        
 //       filling_stack(t_stack a, arg);
                                     //init stack
