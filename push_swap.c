@@ -12,29 +12,35 @@
 
 #include "push_swap.h"
 
+static char    *ft_join(int argc, char **argv, char *arg)
+{
+    int i;
+
+    i = 1;
+    while (i < (argc - 1))
+    {
+        arg = ft_strjoin(arg, argv[i]);
+        i++;
+    }
+    return (arg);
+}
+
 int main(int argc, char **argv)
 {
-    int     check;
+    char    *arg;
     t_stack a;
 
-    check = 0;
-    if (argc > 1)
+    if (argc > 2)
     {
-///////////////////////////////////////////////////////////////
-        check = check_if(argc, argv);
-        if (check == 2)
-        {
-            put_error;              //checking error
-            return (0);
-        }
-        if (check == 0)
-            return (0);
 ///////////////////////////////////////////////////////////////        
-        filling_stack(t_stack a, int argc, char **argv);
-
+        arg = ft_join(argc, argv, arg); //join args in one
+///////////////////////////////////////////////////////////////
+        if (!check_if(arg))
+            return (0);
+        ft_print("%s", arg);
+///////////////////////////////////////////////////////////////        
+//       filling_stack(t_stack a, arg);
                                     //init stack
-
-
 ///////////////////////////////////////////////////////////////
     }
     return (0);

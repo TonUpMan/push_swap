@@ -2,9 +2,9 @@ GREEN =\033[32m
 RESET =\033[0m
 
 SRCS = push_swap.c \
-	lst_utils.c \
 	parsing.c \
-	init_stack.c \
+	#lst_utils.c \
+	#init_stack.c \
 
 OBJS = $(SRCS:.c=.o)
 
