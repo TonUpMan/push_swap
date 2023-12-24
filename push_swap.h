@@ -30,7 +30,7 @@ typedef struct s_stack
 //t_stack *filling_stack(t_stack a, int argc, char **argv);
 //void	ft_lstadd_backstack(t_stack **lst, t_stack *new);
 //void	ft_lstadd_frontstack(t_stack **lst, t_stack *new);
-void    put_error(void);
+char	*ft_makeone(int argc, char **argv);
 int		check_if(char *arg);
 
 #endif

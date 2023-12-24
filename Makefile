@@ -3,6 +3,7 @@ RESET =\033[0m
 
 SRCS = push_swap.c \
 	parsing.c \
+	grouping.c \
 	#lst_utils.c \
 	#init_stack.c \
 
@@ -12,7 +13,7 @@ NAME = Push_Swap
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS = -Wall -Wextra -Werror -Iincludes -g
 
 all : $(NAME)
 

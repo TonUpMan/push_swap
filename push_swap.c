@@ -12,32 +12,21 @@
 
 #include "push_swap.h"
 
-static char    *ft_join(int argc, char **argv, char *arg)
-{
-    int i;
-
-    i = 1;
-    while (i < (argc - 1))
-    {
-        arg = ft_strjoin(arg, argv[i]);
-        i++;
-    }
-    return (arg);
-}
-
 int main(int argc, char **argv)
 {
-    char    *arg = NULL;
+    char    *arg;
 //    t_stack a;
 
     if (argc > 2)
     {
 ///////////////////////////////////////////////////////////////        
-        arg = ft_join(argc, argv, arg); //join args in one
+        arg = ft_makeone(argc, argv); //join args in one
 ///////////////////////////////////////////////////////////////
         if (!check_if(arg))
-            return (0);
+            return (0);                //parsing
+///////////////////////////////////////////////////////////////
         ft_printf("%s", arg);
+        free(arg);
 ///////////////////////////////////////////////////////////////        
 //       filling_stack(t_stack a, arg);
                                     //init stack

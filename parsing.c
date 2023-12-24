@@ -12,11 +12,6 @@
 
 #include "push_swap.h"
 
-void    put_error(void)
-{
-    write(2, "error\n", 6);
-}
-
 static int  isvalid(int c)
 {
     if (ft_isdigit(c))
@@ -57,7 +52,7 @@ int check_if(char *arg)
     check = check_if_digit(arg);
     if (check == 2)
     {
-        put_error();
+        ft_putstr_fd("error", 2);
         return (0);
     }
     return (1);
