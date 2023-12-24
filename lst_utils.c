@@ -6,18 +6,18 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 09:21:59 by qdeviann          #+#    #+#             */
-/*   Updated: 2023/12/24 12:41:50 by qdeviann         ###   ########.fr       */
+/*   Updated: 2023/12/22 11:30:46 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_lstnewstack(int value, int index)
+t_stack	*ft_lstnewstack(void *value, void *index)
 {
 	t_stack	*new;
 
 	new = malloc(sizeof (t_stack));
-	if (new == NULL)
+	if (new == NULL)	
 		return (NULL);
 	new->value = value;
 	new->index = index;
@@ -25,7 +25,6 @@ t_stack	*ft_lstnewstack(int value, int index)
 	new->next = NULL;
 	return (new);
 }
-
 t_stack	*ft_lstlaststack(t_stack *lst)
 {
 	if (!lst)
@@ -43,7 +42,7 @@ void	ft_lstadd_backstack(t_stack **lst, t_stack *new)
 
 	if (!new || !lst)
 		return ;
-	if (*lst == NULL)
+	if (*lst == NULL)	
 		*lst = new;
 	else
 	{
@@ -52,6 +51,7 @@ void	ft_lstadd_backstack(t_stack **lst, t_stack *new)
 		last->next = new;
 	}
 }
+
 
 void	ft_lstadd_frontstack(t_stack **lst, t_stack *new)
 {
