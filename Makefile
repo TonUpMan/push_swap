@@ -4,8 +4,8 @@ RESET =\033[0m
 SRCS = push_swap.c \
 	parsing.c \
 	grouping.c \
-	#lst_utils.c \
-	#init_stack.c \
+	lst_utils.c \
+	init_stack.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -24,6 +24,8 @@ $(NAME) : $(OBJS)
 	@echo "Push_Swap : \c"
 	@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a -o ${NAME}
 	@echo "$(GREEN)COMPILED$(RESET)"
+	@echo "Norm error detected : \c"
+	@echo | norminette | grep "error" | wc -l
 
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $(SRCS) ./libft/libft.h

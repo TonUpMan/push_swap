@@ -6,19 +6,19 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 11:30:21 by qdeviann          #+#    #+#             */
-/*   Updated: 2023/12/22 11:30:25 by qdeviann         ###   ########.fr       */
+/*   Updated: 2023/12/24 14:50:26 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *filling_stack(t_stack a, int argc, char **argv)
+t_stack	*filling_stack(t_stack a, int argc, char **argv)
 {
-        int i;
+	int	i;
 
-        i = (argc - 1);
-        while (i > 1)
-        {
-            ft_split(argv, ' ');
-        }
+	i = (argc - 1);
+	while (i > 1)
+	{
+		ft_split(argv, ' ');
+	}
 }

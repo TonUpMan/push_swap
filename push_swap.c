@@ -6,31 +6,24 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 09:20:38 by qdeviann          #+#    #+#             */
-/*   Updated: 2023/12/22 11:31:12 by qdeviann         ###   ########.fr       */
+/*   Updated: 2023/12/24 14:49:43 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    char    *arg;
-//    t_stack a;
+	char	*arg;
 
-    if (argc > 2)
-    {
-///////////////////////////////////////////////////////////////        
-        arg = ft_makeone(argc, argv); //join args in one
-///////////////////////////////////////////////////////////////
-        if (!check_if(arg))
-            return (0);                //parsing
-///////////////////////////////////////////////////////////////
-        ft_printf("%s", arg);
-        free(arg);
-///////////////////////////////////////////////////////////////        
-//       filling_stack(t_stack a, arg);
-                                    //init stack
-///////////////////////////////////////////////////////////////
-    }
-    return (0);
+	if (argc > 2)
+	{
+		arg = ft_makeone(argc, argv);
+		if (!check_if(arg))
+			return (0);
+		ft_printf("%s", arg);
+		free(arg);
+		filling_stack(t_stack a, arg);
+	}
+	return (0);
 }
