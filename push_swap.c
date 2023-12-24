@@ -15,15 +15,19 @@
 int	main(int argc, char **argv)
 {
 	char	*arg;
+	t_stack	*a;
 
 	if (argc > 2)
 	{
 		arg = ft_makeone(argc, argv);
 		if (!check_if(arg))
 			return (0);
-		ft_printf("%s", arg);
-		free(arg);
-		filling_stack(t_stack a, arg);
+		a = filling_stack(arg);
+		while (a)
+		{
+			ft_printf("value = %d, index = %d\n", a->value, a->index);
+			a = a->next;
+		}
 	}
 	return (0);
 }

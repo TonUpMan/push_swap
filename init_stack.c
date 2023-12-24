@@ -12,13 +12,23 @@
 
 #include "push_swap.h"
 
-t_stack	*filling_stack(t_stack a, int argc, char **argv)
+t_stack	*filling_stack(char *arg)
 {
 	int	i;
+	int	tmp;
+	t_stack	*new;
+	char **splited;
 
-	i = (argc - 1);
-	while (i > 1)
+	i = 0;
+	tmp = 0;
+	splited = ft_split(arg, ' ');
+	while (splited[i])
 	{
-		ft_split(argv, ' ');
+
+		tmp = ft_atoi(splited[i]);
+		free(splited[i]);
+		ft_lstadd_backstack(&new, ft_lstnewstack(&tmp, &i));
+		i++;
 	}
+	return (new);
 }
