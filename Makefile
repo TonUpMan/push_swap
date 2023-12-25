@@ -5,8 +5,7 @@ SRCS = push_swap.c \
 	parsing.c \
 	grouping.c \
 	lst_utils.c \
-	init_stack.c \
-
+	
 OBJS = $(SRCS:.c=.o)
 
 NAME = Push_Swap

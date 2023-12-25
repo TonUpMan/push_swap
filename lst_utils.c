@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_stack	*ft_lstnewstack(int *value, int *index)
+t_stack	*ft_lstnewstack(int value, int index)
 {
 	t_stack	*new;
 

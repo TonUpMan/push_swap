@@ -19,15 +19,15 @@
 
 typedef struct s_stack
 {
-	int			*value;
-	int			*index;
+	int		value;
+	int		index;
 	struct s_stack	*prev;
 	struct s_stack	*next;
-}	t_stack;
+}t_stack;
 
-t_stack	*ft_lstnewstack(int *value, int *index);
+t_stack	*ft_lstnewstack(int value, int index);
 t_stack	*ft_lstlaststack(t_stack *lst);
-t_stack	*filling_stack(char *arg);
+t_stack	*filling_stack(t_stack *a, char *arg);
 void	ft_lstadd_backstack(t_stack **lst, t_stack *new);
 void	ft_lstadd_frontstack(t_stack **lst, t_stack *new);
 char	*ft_makeone(int argc, char **argv);

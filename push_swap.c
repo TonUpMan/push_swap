@@ -14,20 +14,38 @@
 
 int	main(int argc, char **argv)
 {
+	int		i;
+	int		tmp;
 	char	*arg;
-	t_stack	*a;
+	char	**splited;
+	t_stack *element;
 
+	element = malloc(sizeof(t_stack));
 	if (argc > 2)
 	{
 		arg = ft_makeone(argc, argv);
 		if (!check_if(arg))
 			return (0);
-		a = filling_stack(arg);
-		while (a)
+		splited = ft_split(arg, ' ');
+		free(arg);
+		i = 0;
+		while(splited[i])
 		{
-			ft_printf("value = %d, index = %d\n", a->value, a->index);
-			a = a->next;
+			tmp = ft_atoi(splited[i]);
+			free(splited[i]);
+			ft_lstadd_backstack(&element, ft_lstnewstack(tmp, i));
+			i++;
 		}
+		free(splited);
+///////////////////////////////////////////////////////////////////////////////		
+		while(element->next != NULL)
+		{
+			ft_printf("element->value = %d\nelement->index = %d\n", element->value, element->index);
+			ft_printf("\n");
+			element = element->next;
+		}
+
+//////////////////////////////////////////////////////////////////////////////		
 	}
 	return (0);
 }
