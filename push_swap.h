@@ -32,5 +32,6 @@ void	ft_lstadd_backstack(t_stack **lst, t_stack *new);
 void	ft_lstadd_frontstack(t_stack **lst, t_stack *new);
 char	*ft_makeone(int argc, char **argv);
 int		check_if(char *arg);
+char	**ft_prepare(char *arg, char **splited);
 
 #endif

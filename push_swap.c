@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	int		i;
 	int		tmp;
 	char	*arg;
-	char	**splited;
+	char	**splited = NULL;
 	t_stack *element;
 
 	element = malloc(sizeof(t_stack));
@@ -26,8 +26,7 @@ int	main(int argc, char **argv)
 		arg = ft_makeone(argc, argv);
 		if (!check_if(arg))
 			return (0);
-		splited = ft_split(arg, ' ');
-		free(arg);
+		splited = ft_prepare(arg, splited);
 		i = 0;
 		while(splited[i])
 		{
@@ -38,11 +37,12 @@ int	main(int argc, char **argv)
 		}
 		free(splited);
 ///////////////////////////////////////////////////////////////////////////////		
-		while(element->next != NULL)
+		while(i >= 1)
 		{
+			element = element->next;
 			ft_printf("element->value = %d\nelement->index = %d\n", element->value, element->index);
 			ft_printf("\n");
-			element = element->next;
+			i--;
 		}
 
 //////////////////////////////////////////////////////////////////////////////		

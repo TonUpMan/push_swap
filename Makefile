@@ -3,7 +3,7 @@ RESET =\033[0m
 
 SRCS = push_swap.c \
 	parsing.c \
-	grouping.c \
+	arg_treat.c \
 	lst_utils.c \
 	
 OBJS = $(SRCS:.c=.o)
