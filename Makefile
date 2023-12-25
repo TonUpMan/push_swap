@@ -17,6 +17,7 @@ CFLAGS = -Wall -Wextra -Werror -Iincludes -g
 all : $(NAME)
 
 $(NAME) : $(OBJS)
+	@echo | cat "./banners/push.txt"
 	@echo "LIBFT COMPILATION :\c"
 	@${MAKE} -C ./libft >/dev/null
 	@echo "$(GREEN)COMPILED$(RESET)"
@@ -24,7 +25,7 @@ $(NAME) : $(OBJS)
 	@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a -o ${NAME}
 	@echo "$(GREEN)COMPILED$(RESET)"
 	@echo "Norm error detected : \c"
-	@echo | norminette | grep "error" | wc -l
+	@echo | norminette | grep "Error" | wc -l
 
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $(SRCS) ./libft/libft.h
