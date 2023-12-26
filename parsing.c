@@ -20,8 +20,6 @@ static int	isvalid(int c)
 		return (1);
 	if (c == 43)
 		return (1);
-	if (c == 32)
-		return (1);
 	else
 		return (0);
 }
@@ -45,15 +43,39 @@ static int	check_if_digit(char *arg)
 	return (1);
 }
 
-int	check_if(char *arg)
+int	check_if(char **arg)
 {
 	int	check;
+	int	i;
 
-	check = check_if_digit(arg);
-	if (check == 2)
+	i = 0;
+	while (arg[i])
 	{
-		ft_putstr_fd("error", 2);
-		return (0);
+		check = check_if_digit(arg[i]);
+		if (check == 2)
+		{
+			ft_putstr_fd("error", 2);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+int	check_double(int *nbr, int argc)
+{
+	int	check;
+	int	i;
+
+	i = 0;
+	while (i <= (argc - 1))
+	{
+		check = nbr[i];
+		i++;
+		if (check == nbr[i])
+		{
+			ft_putstr_fd("error", 2);
+			return (0);
+		}
 	}
 	return (1);
 }

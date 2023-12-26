@@ -12,47 +12,48 @@
 
 #include "push_swap.h"
 
-static void	init_stack_a(t_stack **a, char *arg)
+static void	init_stack_a(t_stack **a, int *nbr, int argc)
 {
-	char	**splited;
-	int		tmp;
 	int		i;
 
-	splited = ft_split(arg, ' ');
-	free(arg);
 	i = 0;
-	while (splited[i])
+	while (i <= (argc - 1))
 	{
-		tmp = ft_atoi(splited[i]);
-		free(splited[i]);
-		ft_lstadd_backstack(a, ft_lstnewstack(tmp, i));
+		if (i == 0)
+			*a = ft_lstnewstack(nbr[i], i);
+		else
+			ft_lstadd_backstack(a, ft_lstnewstack(nbr[i], i));
 		i++;
 	}
-	free(splited);
+	free(nbr);
 }
 
 int	main(int argc, char **argv)
 {
-	char	*arg;
-	int		i;
 	t_stack	*a;
+	char	**arg;
+	int		*nbr;
+	int		i;
 
-	a = malloc(sizeof(t_stack));
 	if (argc > 2)
 	{
-		arg = ft_makeone(argc, argv);
+		arg = ft_treat(argc, argv);
 		if (!check_if(arg))
 			return (0);
-		init_stack_a(&a, arg);	
+		nbr = ft_convert(arg);
+		if (!check_double(nbr, argc))
+			return (0);
+		init_stack_a(&a, nbr, argc);	
 ///////////////////////////////////////////////////////////////////////////////		
 		i = (argc - 1);
-		while (i >= 1)
+		while (i > 0)
 		{
-			a = a->next;
 			ft_printf("a->value = %d\na->index = %d\n", a->value, a->index);
 			ft_printf("\n");
+			a = a->next;
 			i--;
 		}
+		
 //////////////////////////////////////////////////////////////////////////////		
 	}
 	return (0);
