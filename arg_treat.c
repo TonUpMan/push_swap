@@ -12,13 +12,6 @@
 
 #include "push_swap.h"
 
-char	**ft_prepare(char *arg, char **splited)
-{
-	splited = ft_split(arg, ' ');
-	free(arg);
-	return (splited);
-}
-
 static char	*ft_addspace(char *argv)
 {
 	char	*spaced;
