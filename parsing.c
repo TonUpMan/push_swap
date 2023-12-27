@@ -66,12 +66,14 @@ int	check_double(int *nbr, int argc)
 	int	i;
 	int j;
 
-	i = 0;
-	while (i <= (argc - 1))
+	i = 0;	
+	while (i < (argc - 1))
 	{
-		j = i + 1;
-		while (j <= (argc - 1))
+		j = 0;
+		while (j < (argc - 2))
 		{
+			if (j == i)
+				j++;
 			if (nbr[j] == nbr[i])
 			{
 				ft_putstr_fd("error", 2);

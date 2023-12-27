@@ -33,7 +33,6 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	char	**arg;
 	int		*nbr;
-	int		i;
 
 	if (argc > 2)
 	{
@@ -43,17 +42,14 @@ int	main(int argc, char **argv)
 		nbr = ft_convert(arg);
 		if (!check_double(nbr, argc))
 			return (0);
-		init_stack_a(&a, nbr, argc);	
+		init_stack_a(&a, nbr, argc);
 ///////////////////////////////////////////////////////////////////////////////		
-		i = (argc - 1);
-		while (i > 0)
+		while (a->next != NULL)
 		{
 			ft_printf("a->value = %d\na->index = %d\n", a->value, a->index);
 			ft_printf("\n");
 			a = a->next;
-			i--;
-		}
-		
+		}		
 //////////////////////////////////////////////////////////////////////////////		
 	}
 	return (0);

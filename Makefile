@@ -5,6 +5,7 @@ SRCS = push_swap.c \
 	parsing.c \
 	arg_treat.c \
 	lst_utils.c \
+	command.c \
 	
 OBJS = $(SRCS:.c=.o)
 
