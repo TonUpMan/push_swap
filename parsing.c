@@ -63,19 +63,23 @@ int	check_if(char **arg)
 }
 int	check_double(int *nbr, int argc)
 {
-	int	check;
 	int	i;
+	int j;
 
 	i = 0;
 	while (i <= (argc - 1))
 	{
-		check = nbr[i];
-		i++;
-		if (check == nbr[i])
+		j = i + 1;
+		while (j <= (argc - 1))
 		{
-			ft_putstr_fd("error", 2);
-			return (0);
+			if (nbr[j] == nbr[i])
+			{
+				ft_putstr_fd("error", 2);
+				return (0);
+			}
+			j++;
 		}
+		i++;
 	}
 	return (1);
 }
