@@ -6,7 +6,7 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 09:20:38 by qdeviann          #+#    #+#             */
-/*   Updated: 2023/12/26 10:10:32 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:38:53 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	init_stack_a(t_stack **a, int *nbr, int argc)
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
-//	t_stack *b;
 	char	**arg;
 	int		*nbr;
 
@@ -44,17 +43,6 @@ int	main(int argc, char **argv)
 		if (!check_double(nbr, argc))
 			return (0);
 		init_stack_a(&a, nbr, argc);
-		rr(&a, 'a');
-///////////////////////////////////////////////////////////////////////////////		
-		while (a)
-		{
-			ft_printf("a->value = %d a->index = %d\n", a->value, a->index);
-//			ft_printf("b->value = %d b->index = %d\n", b->value, b->index);
-			ft_printf("\n");
-			a = a->next;
-
-		}		
-//////////////////////////////////////////////////////////////////////////////		
 	}
 	return (0);
 }

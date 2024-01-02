@@ -6,7 +6,7 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 10:32:40 by qdeviann          #+#    #+#             */
-/*   Updated: 2023/12/26 10:32:43 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:40:03 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	s(t_stack *x, int c)
 	ft_printf("s%c\n", c);
 }
 
-void	push(t_stack **x, t_stack **y, int c)
+void	p(t_stack **x, t_stack **y, int c)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	tmp = *x;
 	tmp = tmp->next;
 	if (*y == NULL)
 		ft_lstadd_backstack(y, *x);
-	else 
+	else
 		ft_lstadd_frontstack(y, *x);
 	*x = tmp;
 	ft_printf("p%c", c);
@@ -41,8 +41,8 @@ void	push(t_stack **x, t_stack **y, int c)
 
 void	r(t_stack **x, int c)
 {
-	t_stack *tmp;
-	t_stack *head;
+	t_stack	*tmp;
+	t_stack	*head;
 
 	head = *x;
 	tmp = ft_lstlaststack(head);
@@ -54,8 +54,8 @@ void	r(t_stack **x, int c)
 
 void	rr(t_stack **x, int c)
 {
-	t_stack *tmp;
-	t_stack *head;
+	t_stack	*tmp;
+	t_stack	*head;
 
 	head = *x;
 	tmp = ft_lstlaststack(head);
@@ -71,4 +71,4 @@ void	rr(t_stack **x, int c)
 	tmp->next = *x;
 	*x = tmp;
 	ft_printf("rr%c\n", c);
-}	
+}

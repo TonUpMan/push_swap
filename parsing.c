@@ -6,7 +6,7 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 09:52:44 by qdeviann          #+#    #+#             */
-/*   Updated: 2023/12/24 14:49:16 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:37:48 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ int	check_if(char **arg)
 	}
 	return (1);
 }
+
 int	check_double(int *nbr, int argc)
 {
 	int	i;
-	int j;
+	int	j;
 
-	i = 0;	
+	i = 0;
 	while (i < (argc - 1))
 	{
 		j = 0;
