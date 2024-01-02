@@ -15,6 +15,7 @@
 void	s(t_stack *x, int c)
 {
 	int	tmp;
+
 	tmp = x->next->value;
 	x->next->value = x->value;
 	x->value = tmp;
@@ -24,10 +25,19 @@ void	s(t_stack *x, int c)
 	ft_printf("r%c\n", c);
 }
 
-//void	p(t_stack **x, t_stack **y)
-//{
-//	1er element de x -> 1er element de y
-//}
+void	push(t_stack **x, t_stack **y)
+{
+	t_stack *tmp;
+
+	tmp = *x;
+	tmp = tmp->next;
+	if (*y == NULL)
+		ft_lstadd_backstack(y, *x);
+	else 
+		ft_lstadd_frontstack(y, *x);
+	*x = tmp;
+}
+
 //void	r(t_stack **x)
 //{
 //	1er element -> dernier element

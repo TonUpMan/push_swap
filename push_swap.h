@@ -31,7 +31,7 @@ t_stack	*filling_stack(t_stack *a, char *arg);
 void	ft_lstadd_backstack(t_stack **lst, t_stack *new);
 void	ft_lstadd_frontstack(t_stack **lst, t_stack *new);
 void	s(t_stack *x, int c);
-//void	init_stack_a(t_stack **a, char *arg);
+void	push(t_stack **x, t_stack **y);
 char	**ft_treat(int argc, char **argv);
 int		check_double(int *nbr, int argc);
 int		check_if(char **arg);
