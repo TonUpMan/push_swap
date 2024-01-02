@@ -22,10 +22,10 @@ void	s(t_stack *x, int c)
 	tmp = x->next->index;
 	x->next->index = x->index;
 	x->index = tmp;
-	ft_printf("r%c\n", c);
+	ft_printf("s%c\n", c);
 }
 
-void	push(t_stack **x, t_stack **y)
+void	push(t_stack **x, t_stack **y, int c)
 {
 	t_stack *tmp;
 
@@ -36,15 +36,39 @@ void	push(t_stack **x, t_stack **y)
 	else 
 		ft_lstadd_frontstack(y, *x);
 	*x = tmp;
+	ft_printf("p%c", c);
 }
 
-//void	r(t_stack **x)
-//{
-//	1er element -> dernier element
-//	2nd element -> 1er element
-//}
-//void	rr(t_stack **x)
-//{
-//	dernier element -> 1er element
-//	1er element -> 2nd element
-//}
+void	r(t_stack **x, int c)
+{
+	t_stack *tmp;
+	t_stack *head;
+
+	head = *x;
+	tmp = ft_lstlaststack(head);
+	*x = head->next;
+	head->next = NULL;
+	tmp->next = head;
+	ft_printf("r%c\n", c);
+}
+
+void	rr(t_stack **x, int c)
+{
+	t_stack *tmp;
+	t_stack *head;
+
+	head = *x;
+	tmp = ft_lstlaststack(head);
+	while (head)
+	{
+		if (head->next->next == NULL)
+		{
+			head->next = NULL;
+			break ;
+		}
+		head = head->next;
+	}
+	tmp->next = *x;
+	*x = tmp;
+	ft_printf("rr%c\n", c);
+}	
