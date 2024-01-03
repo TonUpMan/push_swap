@@ -12,6 +12,31 @@
 
 #include "push_swap.h"
 
+static void	free_all(char **arg, int *result)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i])
+	{
+		free(arg[i]);
+		i++;
+	}
+	free(arg);
+	free(result);
+	ft_putstr_fd("error", 2);
+}
+
+static void	ft_trim_plus(char **arg, int i)
+{
+	char	*trimed;
+
+	trimed = ft_strtrim(arg[i], "+");
+	free(arg[i]);
+	arg[i] = ft_substr(trimed, 0, ft_strlen(trimed));
+	free(trimed);
+}
+
 int	*ft_convert(char **arg)
 {
 	int	*result;
@@ -24,7 +49,14 @@ int	*ft_convert(char **arg)
 	i = 0;
 	while (arg[i])
 	{
+		if (arg[i][0] == 43)
+			ft_trim_plus(arg, i);
 		result[i] = ft_atoi(arg[i]);
+		if (!ft_check_over(result[i], arg[i]))
+		{
+			free_all(arg, result);
+			return (0);
+		}
 		free(arg[i]);
 		i++;
 	}
@@ -32,18 +64,12 @@ int	*ft_convert(char **arg)
 	return (result);
 }
 
-static char	*ft_addspace(char *argv)
+static char	*ft_join(char *args, char *argv)
 {
-	char	*spaced;
-
-	spaced = ft_strjoin(argv, " ");
-	return (spaced);
-}
-
-static char	*ft_join(char *args, char *tmp)
-{
+	char	*tmp;
 	char	*joined;
 
+	tmp = ft_strjoin(argv, " ");
 	joined = ft_strjoin(args, tmp);
 	free (args);
 	free (tmp);
@@ -54,15 +80,13 @@ char	**ft_treat(int argc, char **argv)
 {
 	char	**result;
 	char	*args;
-	char	*tmp;
 	int		i;
 
 	i = 1;
 	args = ft_calloc(1, sizeof (char *));
 	while (i <= (argc - 1))
 	{
-		tmp = ft_addspace(argv[i]);
-		args = ft_join(args, tmp);
+		args = ft_join(args, argv[i]);
 		i++;
 	}
 	result = ft_split(args, ' ');

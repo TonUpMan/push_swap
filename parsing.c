@@ -6,11 +6,30 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 09:52:44 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/02 17:37:48 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/03 14:24:00 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_check_over(int nbr, char *str)
+{
+	int		len;
+	char	*tmp;
+
+	len = ft_strlen(str);
+	tmp = ft_itoa(nbr);
+	if (!ft_strncmp(tmp, str, len))
+	{
+		free(tmp);
+		return (1);
+	}
+	else
+	{
+		free(tmp);
+		return (0);
+	}
+}
 
 static int	isvalid(int c)
 {
@@ -28,7 +47,7 @@ static int	check_if_digit(char *arg)
 {
 	int	i;
 	int	count;
-	
+
 	i = 0;
 	count = 0;
 	while (arg[i] != '\0')

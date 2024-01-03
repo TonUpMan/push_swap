@@ -40,9 +40,16 @@ int	main(int argc, char **argv)
 		if (!check_if(arg))
 			return (0);
 		nbr = ft_convert(arg);
+		if (!nbr)
+			return (0);
 		if (!check_double(nbr, argc))
 			return (0);
 		init_stack_a(&a, nbr, argc);
+		while (a)
+		{
+			ft_printf("a->value = %d, a->index = %d\n", a->value, a->index);
+			a = a->next;
+		}
 	}
 	return (0);
 }
