@@ -12,7 +12,12 @@
 
 #include "push_swap.h"
 
-void	s(t_stack *x, int c)
+void	put_command(char *s)
+{
+	ft_printf("%s", s);
+}
+
+void	swap(t_stack *x)
 {
 	int	tmp;
 
@@ -22,10 +27,9 @@ void	s(t_stack *x, int c)
 	tmp = x->next->index;
 	x->next->index = x->index;
 	x->index = tmp;
-	ft_printf("s%c\n", c);
 }
 
-void	p(t_stack **x, t_stack **y, int c)
+void	push(t_stack **x, t_stack **y)
 {
 	t_stack	*tmp;
 
@@ -36,10 +40,9 @@ void	p(t_stack **x, t_stack **y, int c)
 	else
 		ft_lstadd_frontstack(y, *x);
 	*x = tmp;
-	ft_printf("p%c", c);
 }
 
-void	r(t_stack **x, int c)
+void	rotate(t_stack **x)
 {
 	t_stack	*tmp;
 	t_stack	*head;
@@ -49,10 +52,9 @@ void	r(t_stack **x, int c)
 	*x = head->next;
 	head->next = NULL;
 	tmp->next = head;
-	ft_printf("r%c\n", c);
 }
 
-void	rr(t_stack **x, int c)
+void	reverse_rotate(t_stack **x)
 {
 	t_stack	*tmp;
 	t_stack	*head;
@@ -70,5 +72,4 @@ void	rr(t_stack **x, int c)
 	}
 	tmp->next = *x;
 	*x = tmp;
-	ft_printf("rr%c\n", c);
 }

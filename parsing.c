@@ -27,19 +27,21 @@ static int	isvalid(int c)
 static int	check_if_digit(char *arg)
 {
 	int	i;
-
+	int	count;
+	
 	i = 0;
+	count = 0;
 	while (arg[i] != '\0')
 	{
-		if (arg[i] == 43 && arg[i + 1] == 43)
-			return (2);
-		if (arg[i] == 45 && arg[i + 1] == 45)
-			return (2);
+		if (arg[i] == 43 || arg[i] == 45)
+			count++;
 		if (isvalid(arg[i]))
 			i++;
 		else
 			return (2);
 	}
+	if (count > 1)
+		return (2);
 	return (1);
 }
 
