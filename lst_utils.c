@@ -61,3 +61,20 @@ void	ft_lstadd_frontstack(t_stack **lst, t_stack *new)
 	new->prev = NULL;
 	*lst = new;
 }
+
+void	ft_stackclear(t_stack **lst)
+{
+	t_stack	*ptr;
+	t_stack	**head;
+
+	if (!lst)
+		return ;
+	head = lst;
+	while ((*lst))
+	{
+		ptr = (*lst)->next;
+		free(*lst);
+		*lst = ptr;
+	}
+	*head = NULL;
+}

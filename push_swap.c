@@ -12,42 +12,22 @@
 
 #include "push_swap.h"
 
-static void	init_stack_a(t_stack **a, int *nbr, int argc)
-{
-	int		i;
-
-	i = 0;
-	while (i < (argc - 1))
-	{
-		if (i == 0)
-			*a = ft_lstnewstack(nbr[i], i);
-		else
-			ft_lstadd_backstack(a, ft_lstnewstack(nbr[i], i));
-		i++;
-	}
-	free(nbr);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	char	**arg;
-	int		*nbr;
 
-	if (argc > 2)
+	if (argc >= 2)
 	{
 		arg = ft_treat(argc, argv);
 		if (!check_if(arg))
 			return (0);
-		nbr = ft_convert(arg);
-		if (!nbr)
+		init_stack_a(&a, arg);
+		if (a == NULL)
 			return (0);
-		if (!check_double(nbr, argc))
-			return (0);
-		init_stack_a(&a, nbr, argc);
-		while (a)
+		while (a != NULL)
 		{
-			ft_printf("a->value = %d, a->index = %d\n", a->value, a->index);
+			ft_printf("[%d]value = %d\n", a->index, a->value);
 			a = a->next;
 		}
 	}

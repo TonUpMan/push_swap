@@ -12,25 +12,6 @@
 
 #include "push_swap.h"
 
-int	ft_check_over(int nbr, char *str)
-{
-	int		len;
-	char	*tmp;
-
-	len = ft_strlen(str);
-	tmp = ft_itoa(nbr);
-	if (!ft_strncmp(tmp, str, len))
-	{
-		free(tmp);
-		return (1);
-	}
-	else
-	{
-		free(tmp);
-		return (0);
-	}
-}
-
 static int	isvalid(int c)
 {
 	if (ft_isdigit(c))
@@ -77,31 +58,6 @@ int	check_if(char **arg)
 		{
 			ft_putstr_fd("error", 2);
 			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	check_double(int *nbr, int argc)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < (argc - 1))
-	{
-		j = 0;
-		while (j < (argc - 2))
-		{
-			if (j == i)
-				j++;
-			if (nbr[j] == nbr[i])
-			{
-				ft_putstr_fd("error", 2);
-				return (0);
-			}
-			j++;
 		}
 		i++;
 	}
