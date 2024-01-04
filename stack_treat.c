@@ -12,17 +12,8 @@
 
 #include "push_swap.h"
 
-static void	free_all(char **arg, t_stack **a)
+static void	ft_free_stack(t_stack **a)
 {
-	int	i;
-
-	i = 0;
-	while (arg[i])
-	{
-		free(arg[i]);
-		i++;
-	}
-	free(arg);
 	ft_stackclear(a);
 	ft_putstr_fd("error", 2);
 }
@@ -45,26 +36,50 @@ static int	ft_check_over(int nbr, char *str)
 		return (0);
 	}
 }
+static int	ft_check_double(t_stack **a)
+{
+	t_stack *check;
+	t_stack *head;
+
+	if (!*a)
+		return (1);
+	head = *a;
+	while (head != NULL)
+	{
+		check = head->next;
+		while (check != NULL)
+		{
+			if (head->value == check->value)
+				return (0);
+			check = check->next;
+		}
+		head = head->next;
+	}
+	return (1);
+}
 
 void	init_stack_a(t_stack **a, char **arg)
 {
 	t_stack	*new;
-	int	i;
+	int		i;
+	int		check;
 
 	i = 0;
+	check = 0;
 	*a = malloc(sizeof(t_stack));
 	*a = NULL;
 	while (arg[i])
 	{
 		new = ft_lstnewstack(ft_atoi(arg[i]), i);
 		if(!ft_check_over(new->value, arg[i]))
-		{
-			free_all(arg, a);
-			return ;
-		}
+			check = 1;
 		ft_lstadd_backstack(a, new);
+		if (!ft_check_double(a))
+			check = 1;
 		free(arg[i]);
 		i++;
 	}
 	free(arg);
+	if (check == 1)
+		ft_free_stack(a);
 }
