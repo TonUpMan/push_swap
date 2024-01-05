@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multi_command.c                                    :+:      :+:    :+:   */
+/*   command_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 10:29:06 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/03 10:30:43 by qdeviann         ###   ########.fr       */
+/*   Created: 2024/01/05 09:47:58 by qdeviann          #+#    #+#             */
+/*   Updated: 2024/01/05 09:48:30 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_all(t_stack *x, t_stack *y)
+void	swap_a(t_stack *a)
 {
-	swap(x);
-	swap(y);
-	put_command("ss\n");
+	swap(a);
+	put_command("sa\n");
 }
 
-void	rotate_all(t_stack **x, t_stack**y)
+void	swap_b(t_stack *b)
 {
-	rotate(x);
-	rotate(y);
-	put_command("rr\n");
+	swap(b);
+	put_command("sb\n");
 }
 
-void	reverse_rotate_all(t_stack **x, t_stack **y)
+void	push_a(t_stack **b, t_stack **a)
 {
-	reverse_rotate(x);
-	reverse_rotate(y);
-	put_command("rrr\n");
+	push(b, a);
+	put_command("pa\n");
 }
+
+void	push_b(t_stack **a, t_stack **b)
+{
+	push(a, b);
+	put_command("pb\n");
+}
+

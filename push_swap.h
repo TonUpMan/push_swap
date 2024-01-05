@@ -25,21 +25,32 @@ typedef struct s_stack
 	struct s_stack	*next;
 }t_stack;
 
-t_stack	*ft_lstnewstack(int value, int index);
-t_stack	*ft_lstlaststack(t_stack *lst);
+t_stack	*ft_newstack(int value, int index);
+t_stack	*ft_laststack(t_stack *lst);
 t_stack	*filling_stack(t_stack *a, char *arg);
-void	ft_lstadd_backstack(t_stack **lst, t_stack *new);
-void	ft_lstadd_frontstack(t_stack **lst, t_stack *new);
+void	put_command(char *s);
+void	go_sort(t_stack **a, t_stack **b);
+void	ft_add_backstack(t_stack **lst, t_stack *new);
+void	ft_add_frontstack(t_stack **lst, t_stack *new);
 void	ft_stackclear(t_stack **lst);
 void	swap(t_stack *x);
+void	swap_a(t_stack *a);
+void	swap_b(t_stack *b);
 void	push(t_stack **x, t_stack **y);
+void	push_a(t_stack **b, t_stack **a);
+void	push_b(t_stack **a, t_stack **b);
 void	rotate(t_stack **x);
+void	rotate_a(t_stack **a);
+void	rotate_b(t_stack **b);
 void	reverse_rotate(t_stack **x);
+void	reverse_rotate_a(t_stack **a);
+void	reverse_rotate_b(t_stack **b);
 void	swap_all(t_stack *x, t_stack *y);
 void	rotate_all(t_stack **x, t_stack**y);
 void	reverse_rotate_all(t_stack **x, t_stack **y);
 void	init_stack_a(t_stack **a, char **arg);
 char	**ft_treat(int argc, char **argv);
+int		ft_stacksize(t_stack *lst);
 int		check_if(char **arg);
 
 #endif

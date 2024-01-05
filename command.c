@@ -36,9 +36,9 @@ void	push(t_stack **x, t_stack **y)
 	tmp = *x;
 	tmp = tmp->next;
 	if (*y == NULL)
-		ft_lstadd_backstack(y, *x);
+		ft_add_backstack(y, *x);
 	else
-		ft_lstadd_frontstack(y, *x);
+		ft_add_frontstack(y, *x);
 	*x = tmp;
 }
 
@@ -48,7 +48,7 @@ void	rotate(t_stack **x)
 	t_stack	*head;
 
 	head = *x;
-	tmp = ft_lstlaststack(head);
+	tmp = ft_laststack(head);
 	*x = head->next;
 	head->next = NULL;
 	tmp->next = head;
@@ -60,7 +60,7 @@ void	reverse_rotate(t_stack **x)
 	t_stack	*head;
 
 	head = *x;
-	tmp = ft_lstlaststack(head);
+	tmp = ft_laststack(head);
 	while (head)
 	{
 		if (head->next->next == NULL)

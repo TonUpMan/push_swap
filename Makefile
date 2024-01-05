@@ -4,9 +4,13 @@ RESET =\033[0m
 SRCS = push_swap.c \
 	parsing.c \
 	arg_treat.c \
-	lst_utils.c \
+	stack_utils.c \
 	command.c \
+	command_stack.c \
+	command_rotate.c \
+	multi_command.c \
 	stack_treat.c \
+	sort.c \
 	
 OBJS = $(SRCS:.c=.o)
 
