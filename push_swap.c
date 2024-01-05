@@ -14,9 +14,13 @@
 
 static void print_stack(t_stack *a, t_stack *b)
 {
-	while (a)
+	while (a || b)
 	{
-		ft_printf("a=[%d]   ", a->value);
+		if (a)
+		{
+			ft_printf("a=[%d]   ", a->value);
+			a = a->next;
+		}
 		if (b)
 		{
 			ft_printf("b=[%d]\n\n", b->value);
@@ -24,26 +28,27 @@ static void print_stack(t_stack *a, t_stack *b)
 		}
 		else
 			ft_printf("\n");
-		a = a->next;
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack *b;
+	t_stack	**a;
+	t_stack **b;
 	char	**arg;
 
+	b = malloc(sizeof(t_stack*));
+	a = malloc(sizeof(t_stack*));
 	if (argc >= 2)
 	{
 		arg = ft_treat(argc, argv);
 		if (!check_if(arg))
 			return (0);
-		init_stack_a(&a, arg);
+		init_stack_a(a, arg);
 		if (a == NULL)
 			return (0);
-		go_sort(&a, &b);
-		print_stack(a, b);
+		go_sort(a, b);
+		print_stack(*a, *b);
 	}
 	return (0);
 }

@@ -44,26 +44,21 @@ static void	ft_isorted(t_stack **a, t_stack **sort)
 
 void	go_sort(t_stack **a, t_stack **b)
 {
-	t_stack	*head;
-	t_stack *check;
 	t_stack	*sort;
+	t_stack *check;
 
-	head = *a;
-	*b = malloc(sizeof(t_stack));
-	*b = NULL;
 	ft_isorted(a, &sort);
 	if (sort == NULL)
 		return ;
-	ft_printf("%d\n", ft_stacksize(sort));
-	while (head != NULL)
+	while ((*a)->next != NULL)
 	{
 		check = sort;
-		while (check != NULL)
+		while (check)
 		{
-			if (head->value == check->value)
+			if ((*a)->value == check->value)
 				push_b(a, b);
 			check = check->next;
 		}
-		head = head->next;
+		rotate_a(a);
 	}
 }

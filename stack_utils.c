@@ -45,7 +45,10 @@ void	ft_add_backstack(t_stack **lst, t_stack *new)
 	if (!new || !lst)
 		return ;
 	if (*lst == NULL)
+	{
 		*lst = new;
+		new->next = NULL;
+	}
 	else
 	{
 		last = ft_laststack(*lst);

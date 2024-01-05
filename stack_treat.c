@@ -79,8 +79,6 @@ void	init_stack_a(t_stack **a, char **arg)
 
 	i = 0;
 	check = 0;
-	*a = malloc(sizeof(t_stack));
-	*a = NULL;
 	while (arg[i])
 	{
 		new = ft_newstack(ft_atoi(arg[i]), i);

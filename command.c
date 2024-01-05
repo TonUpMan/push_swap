@@ -31,15 +31,15 @@ void	swap(t_stack *x)
 
 void	push(t_stack **x, t_stack **y)
 {
-	t_stack	*tmp;
+	t_stack	*head;
 
-	tmp = *x;
-	tmp = tmp->next;
+	head = *x;
+	head = head->next;
 	if (*y == NULL)
 		ft_add_backstack(y, *x);
 	else
 		ft_add_frontstack(y, *x);
-	*x = tmp;
+	*x = head;
 }
 
 void	rotate(t_stack **x)
