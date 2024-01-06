@@ -12,11 +12,6 @@
 
 #include "push_swap.h"
 
-static void	ft_free_stack(t_stack **a)
-{
-	ft_stackclear(a);
-	ft_putstr_fd("error", 2);
-}
 t_stack	*ft_newstack(int value, int index)
 {
 	t_stack	*new;
@@ -92,5 +87,8 @@ void	init_stack_a(t_stack **a, char **arg)
 	}
 	free(arg);
 	if (check == 1)
-		ft_free_stack(a);
+	{
+		ft_stackclear(a);
+		ft_putstr_fd("error", 2);
+	}
 }

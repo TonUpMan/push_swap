@@ -11,6 +11,7 @@ SRCS = push_swap.c \
 	multi_command.c \
 	stack_treat.c \
 	sort.c \
+	pivot.c \
 	
 OBJS = $(SRCS:.c=.o)
 
@@ -23,7 +24,7 @@ CFLAGS = -Wall -Wextra -Werror -Iincludes -g
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	@echo | cat "./banners/push.txt"
+##	@echo | cat "./banners/push.txt"
 	@echo "LIBFT COMPILATION :\c"
 	@${MAKE} -C ./libft >/dev/null
 	@echo "$(GREEN)COMPILED$(RESET)"

@@ -48,6 +48,7 @@ void	ft_add_backstack(t_stack **lst, t_stack *new)
 	{
 		*lst = new;
 		new->next = NULL;
+		new->prev = NULL;
 	}
 	else
 	{
@@ -69,16 +70,13 @@ void	ft_add_frontstack(t_stack **lst, t_stack *new)
 void	ft_stackclear(t_stack **lst)
 {
 	t_stack	*ptr;
-	t_stack	**head;
 
 	if (!lst)
 		return ;
-	head = lst;
 	while ((*lst))
 	{
 		ptr = (*lst)->next;
 		free(*lst);
 		*lst = ptr;
 	}
-	*head = NULL;
 }

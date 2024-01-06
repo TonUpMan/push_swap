@@ -28,6 +28,7 @@ typedef struct s_stack
 t_stack	*ft_newstack(int value, int index);
 t_stack	*ft_laststack(t_stack *lst);
 t_stack	*filling_stack(t_stack *a, char *arg);
+void	print_stack(t_stack *x,  int c);
 void	put_command(char *s);
 void	go_sort(t_stack **a, t_stack **b);
 void	ft_add_backstack(t_stack **lst, t_stack *new);
@@ -49,7 +50,9 @@ void	swap_all(t_stack *x, t_stack *y);
 void	rotate_all(t_stack **x, t_stack**y);
 void	reverse_rotate_all(t_stack **x, t_stack **y);
 void	init_stack_a(t_stack **a, char **arg);
+void	ft_divide(int pivot, t_stack **a, t_stack **b, t_stack **sort);
 char	**ft_treat(int argc, char **argv);
+int		ft_pivot(t_stack **a);
 int		ft_stacksize(t_stack *lst);
 int		check_if(char **arg);
 
