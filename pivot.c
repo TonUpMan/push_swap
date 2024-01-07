@@ -33,22 +33,12 @@ static int	ft_median(t_stack **a)
 
 static int	ft_count_cost(int value, int median)
 {
-	int		i;
 	int		cost;
 
-	i = median;
 	if(value < median)
-	{
-		while (i > value)
-			i--;
-		cost = median - i;
-	}	
+		cost = median - value;
 	else
-	{
-		while (i < value)
-			i++;
-		cost = i - median;
-	}
+		cost = value - median;
 	return (cost);
 }
 
@@ -72,6 +62,7 @@ static int	ft_cost(t_stack **a, int median)
 			save = cost;
 		if (save > cost)
 			pivot = tmp->value;
+		save = cost;
 		tmp = tmp->next;
 	}
 	return (pivot);
@@ -83,6 +74,8 @@ int	ft_pivot(t_stack **a)
 	int		pivot;
 
 	median = ft_median(a);
+	ft_printf("median = [%d]\n", median);
 	pivot = ft_cost(a, median);
+	ft_printf("pivot = [%d]\n", pivot);
 	return (pivot);
 }

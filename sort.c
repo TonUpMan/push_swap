@@ -12,21 +12,7 @@
 
 #include "push_swap.h"
 
-static int stackchr(t_stack *a, t_stack **sort)
-{
-	t_stack *check;
-
-	check = *sort;
-	while (check)
-	{
-		if (check->value == a->value)
-			return (0);
-		check = check->next;
-	}
-	return (1);	
-}
-
-void	ft_divide(int pivot, t_stack **a, t_stack **b, t_stack **sort)
+void	ft_divide(int pivot, t_stack **a, t_stack **b)
 {
 	t_stack *head;
 	int		size;
@@ -34,30 +20,20 @@ void	ft_divide(int pivot, t_stack **a, t_stack **b, t_stack **sort)
 	head = *a;
 	size = ft_stacksize((*a));
 	while (size)
-	{
-		if (!stackchr((*a), sort))
+	{	
+		if	((*a)->value >= pivot)
+		{
+			push_b(a, b);
+		}
+		else
 		{
 			rotate_a(a);
 		}
-		if	((*a)->value > pivot)
-		{
-			push_b(a, b);
-			size--;
-		}
-		else
-			size--;
+		size--;
 	}
 }
 
-static void ft_presort(int value, int index, t_stack **sort)
-{
-	t_stack *new;
-
-	new = ft_newstack(value, index);
-	ft_add_backstack(sort, new);
-}
-
-static int	ft_isorted(t_stack **a, t_stack **sort)
+static int	ft_isorted(t_stack **a)
 {
 	t_stack *check;
 	t_stack *head;
@@ -71,10 +47,8 @@ static int	ft_isorted(t_stack **a, t_stack **sort)
 		while (check != NULL)
 		{
 			if (head->value > check->value)
-			{
-				ft_presort(head->value, head->index, sort);
 				i = 0;
-			}
+
 			check = check->next;
 		}
 		head = head->next;
@@ -84,15 +58,10 @@ static int	ft_isorted(t_stack **a, t_stack **sort)
 
 void	go_sort(t_stack **a, t_stack **b)
 {
-	t_stack	**sort;
 	int		pivot;
 
-	sort = malloc(sizeof(t_stack*));
-	if (ft_isorted(a, sort))
-	{
-		free(sort);
+	if (ft_isorted(a))
 		return ;
-	}
 	pivot = ft_pivot(a);
-	ft_divide(pivot, a, b, sort);
+	ft_divide(pivot, a, b);
 }

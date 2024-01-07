@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	ft_free_stack(t_stack **x)
+void	ft_free_stack(t_stack **x)
 {
 	ft_stackclear(x);
 	free(x);
@@ -25,6 +25,7 @@ void print_stack(t_stack *x,  int c)
 		ft_printf("%c=[%d]\n", c, x->value);
 		x = x->next;
 	}
+	ft_printf("\n");
 }
 
 int	main(int argc, char **argv)
