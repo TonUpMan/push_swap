@@ -12,56 +12,51 @@
 
 #include "push_swap.h"
 
-void	ft_divide(int pivot, t_stack **a, t_stack **b)
+int	find_small(t_stack **x)
 {
 	t_stack *head;
-	int		size;
+	int		small;
 
-	head = *a;
-	size = ft_stacksize((*a));
-	while (size)
-	{	
-		if	((*a)->value >= pivot)
-		{
-			push_b(a, b);
-		}
-		else
-		{
-			rotate_a(a);
-		}
-		size--;
+	head = *x;
+	small =	head->value;
+	while (head->next)
+	{
+		head = head->next;
+		if (head->value < small)
+			small = head->value;
 	}
+	return (small);
 }
 
-static int	ft_isorted(t_stack **a)
+int	find_big(t_stack **x)
 {
-	t_stack *check;
 	t_stack *head;
-	int		i;
+	int		big;
 
-	head = *a;
-	i = 1;
-	while (head != NULL)
+	head = *x;
+	big = head->value;
+	while (head->next)
 	{
-		check = head->next;
-		while (check != NULL)
-		{
-			if (head->value > check->value)
-				i = 0;
-
-			check = check->next;
-		}
 		head = head->next;
+		if (head->value > big)
+			big = head->value;
 	}
-	return (i);
+	return (big);
 }
 
 void	go_sort(t_stack **a, t_stack **b)
 {
-	int		pivot;
+	int		middle;
+	int		bigger;
+	int		smaller;
+	int		size;
 
 	if (ft_isorted(a))
 		return ;
-	pivot = ft_pivot(a);
-	ft_divide(pivot, a, b);
+	middle = ft_pivot(a);
+	bigger = find_big(a);
+	smaller = find_small(a);
+	size = ft_stacksize(*a);
+	ft_printf("small = %d\n middle = %d\n bigger = %d\n size = %d\n\n", smaller, middle, bigger, size);
+	push_b(a, b);
 }

@@ -26,44 +26,50 @@ t_stack	*ft_newstack(int value, int index)
 	return (new);
 }
 
-static int	ft_check_over(int nbr, char *str)
-{
-	int		len;
-	char	*tmp;
-
-	len = ft_strlen(str);
-	tmp = ft_itoa(nbr);
-	if (!ft_strncmp(tmp, str, len))
-	{
-		free(tmp);
-		return (1);
-	}
-	else
-	{
-		free(tmp);
-		return (0);
-	}
-}
-static int	ft_check_double(t_stack **a)
+int	ft_isrevsorted(t_stack **b)
 {
 	t_stack *check;
 	t_stack *head;
+	int		i;
 
-	if (!*a)
-		return (1);
-	head = *a;
+	head = *b;
+	i = 1;
 	while (head != NULL)
 	{
 		check = head->next;
 		while (check != NULL)
 		{
-			if (head->value == check->value)
-				return (0);
+			if (head->value < check->value)
+				i = 0;
+
 			check = check->next;
 		}
 		head = head->next;
 	}
-	return (1);
+	return (i);
+}
+
+int	ft_isorted(t_stack **a)
+{
+	t_stack *check;
+	t_stack *head;
+	int		i;
+
+	head = *a;
+	i = 1;
+	while (head != NULL)
+	{
+		check = head->next;
+		while (check != NULL)
+		{
+			if (head->value > check->value)
+				i = 0;
+
+			check = check->next;
+		}
+		head = head->next;
+	}
+	return (i);
 }
 
 void	init_stack_a(t_stack **a, char **arg)

@@ -51,10 +51,14 @@ void	swap_all(t_stack *x, t_stack *y);
 void	rotate_all(t_stack **x, t_stack**y);
 void	reverse_rotate_all(t_stack **x, t_stack **y);
 void	init_stack_a(t_stack **a, char **arg);
-void	ft_divide(int pivot, t_stack **a, t_stack **b);
 char	**ft_treat(int argc, char **argv);
+int		ft_check_over(int nbr, char *str);
+int		ft_check_double(t_stack **a);
 int		ft_pivot(t_stack **a);
 int		ft_stacksize(t_stack *lst);
 int		check_if(char **arg);
+int		ft_isorted(t_stack **a);
+int		ft_isrevsorted(t_stack **b);
+int		find_big(t_stack **x);
 
 #endif

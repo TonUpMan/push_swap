@@ -12,6 +12,46 @@
 
 #include "push_swap.h"
 
+int	ft_check_over(int nbr, char *str)
+{
+	int		len;
+	char	*tmp;
+
+	len = ft_strlen(str);
+	tmp = ft_itoa(nbr);
+	if (!ft_strncmp(tmp, str, len))
+	{
+		free(tmp);
+		return (1);
+	}
+	else
+	{
+		free(tmp);
+		return (0);
+	}
+}
+int	ft_check_double(t_stack **a)
+{
+	t_stack *check;
+	t_stack *head;
+
+	if (!*a)
+		return (1);
+	head = *a;
+	while (head != NULL)
+	{
+		check = head->next;
+		while (check != NULL)
+		{
+			if (head->value == check->value)
+				return (0);
+			check = check->next;
+		}
+		head = head->next;
+	}
+	return (1);
+}
+
 static int	isvalid(int c)
 {
 	if (ft_isdigit(c))
