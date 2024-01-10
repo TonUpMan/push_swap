@@ -62,9 +62,11 @@ void	ft_add_frontstack(t_stack **lst, t_stack *new)
 {
 	if (!lst || !new)
 		return ;
+	(*lst)->prev = new;
 	new->next = *lst;
 	new->prev = NULL;
 	*lst = new;
+
 }
 
 void	ft_stackclear(t_stack **lst)

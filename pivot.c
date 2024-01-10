@@ -12,13 +12,13 @@
 
 #include "push_swap.h"
 
-static int	ft_median(t_stack **a)
+static int	ft_median(t_stack **x)
 {
 	t_stack *tmp;
 	int		median;
 	int		d;
 
-	tmp = *a;
+	tmp = *x;
 	median = 0;
 	d = 0;
 	while (tmp)
@@ -42,14 +42,15 @@ static int	ft_count_cost(int value, int median)
 	return (cost);
 }
 
-static int	ft_cost(t_stack **a, int median)
+static int	ft_cost(t_stack **x, int median)
 {
 	t_stack	*tmp;
 	int		cost;
 	int		save;
 	int		pivot;
 
-	tmp = *a;
+	tmp = *x;
+	pivot = tmp->value;
 	while (tmp)
 	{
 		cost = ft_count_cost(tmp->value, median);
@@ -70,12 +71,12 @@ static int	ft_cost(t_stack **a, int median)
 	return (pivot);
 }
 
-int	ft_pivot(t_stack **a)
+int	ft_pivot(t_stack **x)
 {
 	int		median;
 	int		pivot;
 
-	median = ft_median(a);
-	pivot = ft_cost(a, median);
+	median = ft_median(x);
+	pivot = ft_cost(x, median);
 	return (pivot);
 }

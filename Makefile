@@ -10,6 +10,8 @@ SRCS = push_swap.c \
 	command_rotate.c \
 	multi_command.c \
 	stack_treat.c \
+	prepare_sort.c \
+	little_sort.c \
 	sort.c \
 	pivot.c \
 	

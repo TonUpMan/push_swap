@@ -52,6 +52,7 @@ void	rotate(t_stack **x)
 	*x = head->next;
 	head->next = NULL;
 	tmp->next = head;
+	head->prev = tmp;
 }
 
 void	reverse_rotate(t_stack **x)
