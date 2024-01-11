@@ -27,8 +27,8 @@ void	ft_free_stack(t_stack **x)
 		x = x->next;
 	}
 	ft_printf("\n");
-}*/
-/*void    print_list(t_stack *lst)
+}
+void    print_list(t_stack *lst)
 {
     t_stack *ptr;
 
@@ -71,8 +71,6 @@ int	main(int argc, char **argv)
 		if (a == NULL)
 			return (0);
 		go_sort(a, b);
-//		print_stack(*a, 'a');
-//		print_stack(*b, 'b');
 	}
 	ft_free_stack(a);
 	ft_free_stack(b);

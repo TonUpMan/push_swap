@@ -53,7 +53,7 @@ void	go_sort(t_stack **a, t_stack **b)
 		return ;
 	if (size == 2)
 		rotate_a(a);	
-	if (size <= 10)
+	if (size <= 50)
 	{	
 			sort_ten_max(a, b, size);
 	}

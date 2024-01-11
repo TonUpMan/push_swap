@@ -53,8 +53,11 @@ void	reverse_rotate_all(t_stack **x, t_stack **y);
 void	init_stack_a(t_stack **a, char **arg);
 void	sort_ten_max(t_stack **a, t_stack **b, int size);
 void	sort_three(t_stack **a, int big);
+void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
-void	end_sort(t_stack **b, t_stack **a, int small, int middle);
+void	divide_stack(t_stack **a, t_stack **b, int big, int small);
+void	join_stack(t_stack **b, t_stack **a, int big);
+void	end_sort(t_stack **a, int small);
 
 void    print_list(t_stack *lst);
 
@@ -68,5 +71,7 @@ int		ft_isorted(t_stack **a);
 int		ft_isrevsorted(t_stack **b);
 int		find_big(t_stack **x);
 int		find_small(t_stack **x);
+int		chr_cost(t_stack **x, int nbr);
+int		chr_value(t_stack **x, int value);
 
 #endif

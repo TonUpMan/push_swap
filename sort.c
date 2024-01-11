@@ -12,7 +12,48 @@
 
 #include "push_swap.h"
 
-static void	divide_ten(t_stack **a, t_stack **b, int big, int middle, int small)
+int		chr_cost(t_stack **x, int nbr)
+{
+	t_stack *chr;
+	int		cost;
+
+	chr = *x;
+	cost = 0;
+	while(chr->value != nbr)
+	{
+		cost++;
+		chr = chr->next;
+	}
+	return (cost);
+}
+
+int	chr_value(t_stack **x, int value)
+{
+	t_stack *head;
+	int		cost;
+	int		save;
+	int		result;
+
+	head = *x;
+	cost = 0;
+	save = ft_stacksize(*x);
+	while (head)
+	{
+		if(value < head->value)
+		{
+			cost = chr_cost(x, head->value);
+			if(save > cost || head->value < result)
+			{
+				save = cost;
+				result = head->value;
+			}
+		}
+		head = head->next;
+	}
+	return (result);
+}
+
+void	divide_stack(t_stack **a, t_stack **b, int big, int small)
 {
 	int		size;
 	t_stack *head;
@@ -21,7 +62,7 @@ static void	divide_ten(t_stack **a, t_stack **b, int big, int middle, int small)
 	while (size != 3)
 	{
 		head = *a;
-		if(head->value == small || head->value == middle || head->value == big)
+		if(head->value == small || head->value == big)
 		{
 			rotate_a(a);
 			continue ;
@@ -63,42 +104,34 @@ static void	revsort_b(t_stack **b)
 	}
 }
 
-void	end_sort(t_stack **b, t_stack **a, int small, int middle)
-{
-	reverse_rotate_a(a);
-	while ((*b)->value > middle)
-		push_a(b, a);
-	reverse_rotate_a(a);
-	while ((*b))
-		push_a(b, a);
-	while((*a)->value != small)
-		rotate_a(a);
-}
-
 void	sort_ten_max(t_stack **a, t_stack **b, int size)
 {
 	int	big;
-	int	middle;
 	int	small;
 
 	big = find_big(a);
-	middle = ft_pivot(a);
 	small = find_small(a);
 	if (size == 3)
 	{
 		sort_three(a, big);
 		return ;
 	}
-	if (size <= 5)
+	if (size == 4)
+	{
+		sort_four(a, b);
+		return ;
+	}
+	if (size == 5)
 	{
 		sort_five(a, b);
 		return ;
 	}
 	else
 	{
-		divide_ten(a, b, big, middle, small);
+		divide_stack(a, b, big, small);
 		sort_three(a, big);
 		revsort_b(b);
-		end_sort(b, a, small, middle);
+		join_stack(b, a, big);
+		end_sort(a, small);
 	}
 }
