@@ -23,7 +23,7 @@ static int	ft_median(t_stack **x)
 	d = 0;
 	while (tmp)
 	{
-		median += tmp->value;
+		median += tmp->index;
 		tmp = tmp->next;
 		d++;
 	}
@@ -31,14 +31,14 @@ static int	ft_median(t_stack **x)
 	return (median);
 }
 
-static int	ft_count_cost(int value, int median)
+static int	ft_count_cost(int index, int median)
 {
 	int		cost;
 
-	if(value < median)
-		cost = median - value;
+	if(index < median)
+		cost = median - index;
 	else
-		cost = value - median;
+		cost = index - median;
 	return (cost);
 }
 
@@ -50,20 +50,20 @@ static int	ft_cost(t_stack **x, int median)
 	int		pivot;
 
 	tmp = *x;
-	pivot = tmp->value;
+	pivot = tmp->index;
 	while (tmp)
 	{
-		cost = ft_count_cost(tmp->value, median);
+		cost = ft_count_cost(tmp->index, median);
 		if (cost == 0)
 		{
-			pivot = tmp->value;
+			pivot = tmp->index;
 			return (pivot);
 		}
 		if (tmp->prev == NULL)
 			save = cost;
 		if (save > cost)
 		{
-			pivot = tmp->value;
+			pivot = tmp->index;
 			save = cost;
 		}
 		tmp = tmp->next;

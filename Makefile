@@ -12,6 +12,8 @@ SRCS = push_swap.c \
 	stack_treat.c \
 	prepare_sort.c \
 	little_sort.c \
+	butter_sort.c \
+	index_utils.c \
 	sort.c \
 	pivot.c \
 	

@@ -12,36 +12,58 @@
 
 #include "push_swap.h"
 
-int	find_small(t_stack **x)
+void	join_stack(t_stack **b, t_stack **a)
 {
-	t_stack *head;
-	int		small;
+	int	next;
 
-	head = *x;
-	small =	head->value;
-	while (head->next)
+	if (!(*a))
+		push_first(a, b);
+	while((*b))
 	{
-		head = head->next;
-		if (head->value < small)
-			small = head->value;
+		next = chr_index(a, (*b)->index);
+		if ((*a)->index == next || next == 0)
+			push_a(b, a);
+		else
+		{
+			if (chr_cost_index(a, next) > ft_stacksize(*a) / 2)
+				{
+					while ((*a)->index != next)
+						reverse_rotate_a(a);
+				}	
+				else
+				{
+					while ((*a)->index != next)
+						rotate_a(a);
+				}
+		}
 	}
-	return (small);
 }
 
-int	find_big(t_stack **x)
+void	push_first(t_stack **a, t_stack **b)
 {
-	t_stack *head;
-	int		big;
+	int big;
+	int size;
 
-	head = *x;
-	big = head->value;
-	while (head->next)
-	{
-		head = head->next;
-		if (head->value > big)
-			big = head->value;
-	}
-	return (big);
+	size = ft_stacksize(*b);
+	big = find_big(b, size);
+	while ((*b)->index != big)
+		rotate_b(b);
+	push_a(b, a);
+}
+
+static void	short_sort(t_stack **a, t_stack **b, int size)
+{
+	int	big;
+
+	big = find_big(a, size);
+	if (size == 2)
+		rotate_a(a);
+	else if (size == 3)
+		sort_three(a, big);
+	else if (size == 4)
+		sort_four(a, b, big);
+	else if (size == 5)
+		sort_five(a, b, big);
 }
 
 void	go_sort(t_stack **a, t_stack **b)
@@ -49,19 +71,20 @@ void	go_sort(t_stack **a, t_stack **b)
 	int		size;
 
 	size = ft_stacksize(*a);
+	index_sort(a, size);
 	if (ft_isorted(a))
 		return ;
-	if (size == 2)
-		rotate_a(a);	
-	if (size <= 50)
-	{	
-			sort_ten_max(a, b, size);
+	else
+	{
+		if (size <= 5)
+		{
+			short_sort(a, b, size);
+			return ;
+		}	
+		else
+		{
+			butter_sort(a, b, size);
+			return ;
+		}
 	}
-		//if (size <= 100)
-		//{
-		//	sort_hundred(a, b);
-		//	continue ;
-		//}
-		//else
-		//	sort_max(a, b);
-	}
+}

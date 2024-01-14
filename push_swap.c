@@ -27,7 +27,7 @@ void	ft_free_stack(t_stack **x)
 		x = x->next;
 	}
 	ft_printf("\n");
-}
+}*/
 void    print_list(t_stack *lst)
 {
     t_stack *ptr;
@@ -35,22 +35,22 @@ void    print_list(t_stack *lst)
     if (lst)
     {
         ft_printf("adr maillon = %p \n", lst);
-        //ft_printf("adr maillon = %p \n", lst);
         ft_printf("prev = %p \n", lst->prev);
         ft_printf("content = %d \n", lst->value);
+        ft_printf("index = %d \n", lst->index);
         ft_printf("next = %p \n \n", lst->next);
         ptr = lst->next;
         while (ptr != NULL)
         {
             ft_printf("adr maillon = %p \n", ptr);
-            //ft_printf("adr maillon = %p \n", ptr);
             ft_printf("prev = %p \n", ptr->prev);
             ft_printf("content = %d \n", ptr->value);
+        	ft_printf("index = %d \n", ptr->index);
             ft_printf("next = %p \n\n", ptr->next);
             ptr = ptr->next;
         }
     }
-}*/
+}
 
 int	main(int argc, char **argv)
 {
@@ -71,6 +71,7 @@ int	main(int argc, char **argv)
 		if (a == NULL)
 			return (0);
 		go_sort(a, b);
+		//print_list(*a);
 	}
 	ft_free_stack(a);
 	ft_free_stack(b);

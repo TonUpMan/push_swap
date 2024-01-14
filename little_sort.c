@@ -6,53 +6,49 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 13:36:23 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/10 13:36:32 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/13 16:15:48 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	join_stack(t_stack **b, t_stack **a, int big)
+void	join_little_stack(t_stack **b, t_stack **a)
 {
-	int	value;
-	while ((*b))
+	int	next;
+
+	while((*b))
 	{
-		if ((*b)->value > big)
-		{
-			big = (*b)->value;
+		next = chr_index(a, (*b)->index);
+		if ((*a)->index == next || next == 0)
 			push_a(b, a);
-			rotate_a(a);
-		}
 		else
 		{
-			value = (chr_value(a, (*b)->value));
-			if (chr_cost(a, value) > ft_stacksize(*a) / 2)
-			{
-				while ((*a)->value != value)
-					reverse_rotate_a(a);
-			}	
-			else
-			{
-				while ((*a)->value != value)
-					rotate_a(a);
-			}
-			push_a(b, a);
+			if (chr_cost_index(a, next) > ft_stacksize(*a) / 2)
+				{
+					while ((*a)->index != next)
+						reverse_rotate_a(a);
+				}	
+				else
+				{
+					while ((*a)->index != next)
+						rotate_a(a);
+				}
 		}
 	}
 }
 
-void	end_sort(t_stack **a, int small)
+void	end_sort(t_stack **a)
 {
 	while(!ft_isorted(a))
 	{
-		if (chr_cost(a, small) > ft_stacksize(*a) / 2)
+		if (chr_cost_index(a, 0) > ft_stacksize(*a) / 2)
 			{
-				while ((*a)->value != small)
+				while ((*a)->index != 0)
 					reverse_rotate_a(a);
 			}	
 			else
 			{
-				while ((*a)->value != small)
+				while ((*a)->index != 0)
 					rotate_a(a);
 			}
 	}
@@ -65,12 +61,12 @@ void	sort_three(t_stack **a, int big)
 	while (!ft_isorted(a))
 	{
 		head = *a;
-		if (head->value == big)
+		if (head->index == big)
 		{
 			rotate_a(a);
 			continue ;
 		}
-		if (head->next->value == big)
+		if (head->next->index == big)
 		{			
 			reverse_rotate_a(a);
 			continue ;
@@ -80,31 +76,33 @@ void	sort_three(t_stack **a, int big)
 	}
 }
 
-void	sort_four(t_stack **a, t_stack **b)
+void	sort_four(t_stack **a, t_stack **b, int big)
 {
-	int	big;
-	int		small;
-
-	push_b(a, b);
-	big = find_big(a);
+	while (ft_stacksize(*a) != 3)
+	{
+		if((*a)->index == big)
+			rotate_a(a);
+		else
+			push_b(a, b);
+	}
 	sort_three(a, big);
-	join_stack(b, a, big);
-	small = find_small(a);
-	end_sort(a, small);
+	join_little_stack(b, a);
+	end_sort(a);
+
 }
 
-void	sort_five(t_stack **a, t_stack **b)
+void	sort_five(t_stack **a, t_stack **b, int big)
 {
-	int		big;
-	int		small;
-
-	push_b(a, b);
-	push_b(a, b);
-	big = find_big(a);
+	while (ft_stacksize(*a) != 3)
+	{
+		if((*a)->index == big)
+			rotate_a(a);
+		else
+			push_b(a, b);
+	}
 	if (!ft_isrevsorted(b))
 		swap_b(*b);
 	sort_three(a, big);
-	join_stack(b, a, big);
-	small = find_small(a);
-	end_sort(a, small);
+	join_little_stack(b, a);
+	end_sort(a);
 }

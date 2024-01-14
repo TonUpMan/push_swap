@@ -30,7 +30,7 @@ void	swap_b(t_stack *b)
 
 void	push_a(t_stack **b, t_stack **a)
 {
-if (ft_stacksize(*b) == 0)
+	if (ft_stacksize(*b) == 0)
 		return ;
 	push(b, a);
 	put_command("pa\n");

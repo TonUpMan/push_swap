@@ -39,7 +39,7 @@ int	ft_isrevsorted(t_stack **b)
 		check = head->next;
 		while (check != NULL)
 		{
-			if (head->value < check->value)
+			if (head->index < check->index)
 				i = 0;
 
 			check = check->next;
@@ -62,7 +62,7 @@ int	ft_isorted(t_stack **a)
 		check = head->next;
 		while (check != NULL)
 		{
-			if (head->value > check->value)
+			if (head->index > check->index)
 				i = 0;
 
 			check = check->next;
