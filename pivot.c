@@ -6,7 +6,7 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:23:12 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/06 14:23:15 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:11:58 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	ft_median(t_stack **x)
 {
-	t_stack *tmp;
-	int		median;
-	int		d;
+	t_stack		*tmp;
+	int			median;
+	int			d;
 
 	tmp = *x;
 	median = 0;
@@ -35,7 +35,7 @@ static int	ft_count_cost(int index, int median)
 {
 	int		cost;
 
-	if(index < median)
+	if (index < median)
 		cost = median - index;
 	else
 		cost = index - median;

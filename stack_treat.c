@@ -6,7 +6,7 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:06:38 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/04 12:07:10 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:27:36 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_stack	*ft_newstack(int value, int index)
 
 int	ft_isrevsorted(t_stack **b)
 {
-	t_stack *check;
-	t_stack *head;
+	t_stack	*check;
+	t_stack	*head;
 	int		i;
 
 	head = *b;
@@ -41,7 +41,6 @@ int	ft_isrevsorted(t_stack **b)
 		{
 			if (head->index < check->index)
 				i = 0;
-
 			check = check->next;
 		}
 		head = head->next;
@@ -51,9 +50,9 @@ int	ft_isrevsorted(t_stack **b)
 
 int	ft_isorted(t_stack **a)
 {
-	t_stack *check;
-	t_stack *head;
-	int		i;
+	t_stack		*check;
+	t_stack		*head;
+	int			i;
 
 	head = *a;
 	i = 1;
@@ -64,7 +63,6 @@ int	ft_isorted(t_stack **a)
 		{
 			if (head->index > check->index)
 				i = 0;
-
 			check = check->next;
 		}
 		head = head->next;
@@ -83,7 +81,7 @@ void	init_stack_a(t_stack **a, char **arg)
 	while (arg[i])
 	{
 		new = ft_newstack(ft_atoi(arg[i]), i);
-		if(!ft_check_over(new->value, arg[i]))
+		if (!ft_check_over(new->value, arg[i]))
 			check = 1;
 		ft_add_backstack(a, new);
 		if (!ft_check_double(a))

@@ -28,15 +28,15 @@ CFLAGS = -Wall -Wextra -Werror -Iincludes -g
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-#	@echo | cat "./banners/push.txt"
+	@echo | cat "./banners/push.txt"
 	@echo "LIBFT COMPILATION :\c"
 	@${MAKE} -C ./libft >/dev/null
 	@echo "$(GREEN)COMPILED$(RESET)"
 	@echo "Push_Swap : \c"
 	@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a -o ${NAME}
 	@echo "$(GREEN)COMPILED$(RESET)"
-#	@echo "Norm error detected : \c"
-#	@echo | norminette | grep "Error" | wc -l
+	@echo "Norm error detected : \c"
+	@echo | norminette | grep "Error" | wc -l
 
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $(SRCS) ./libft/libft.h

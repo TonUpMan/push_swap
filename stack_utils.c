@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 09:21:59 by qdeviann          #+#    #+#             */
-/*   Updated: 2023/12/24 14:51:07 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:18:20 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	ft_add_frontstack(t_stack **lst, t_stack *new)
 	new->next = *lst;
 	new->prev = NULL;
 	*lst = new;
-
 }
 
 void	ft_stackclear(t_stack **lst)

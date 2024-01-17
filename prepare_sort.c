@@ -6,56 +6,64 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:01:59 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/10 07:42:38 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:19:56 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	join_stack(t_stack **b, t_stack **a)
+static void	check_isbig(t_stack **b, t_stack **a, int big)
 {
-	int	next;
+	int	save_big;
 
-	if (!(*a))
-		push_first(a, b);
-	while((*b))
+	if ((*b))
 	{
-		next = chr_index(a, (*b)->index);
-		if ((*a)->index == next || next == 0)
-			push_a(b, a);
-		else
+		save_big = find_big(b);
+		if (big == save_big)
 		{
-			if (chr_cost_index(a, next) > ft_stacksize(*a) / 2)
-				{
-					while ((*a)->index != next)
-						reverse_rotate_a(a);
-				}	
-				else
-				{
-					while ((*a)->index != next)
-						rotate_a(a);
-				}
+			if (chr_cost_index(b, big) > ft_stacksize(*b) / 2)
+			{
+				while ((*b)->index != big)
+					reverse_rotate_b(b);
+			}
+			else
+			{
+				while ((*b)->index != big)
+					rotate_b(b);
+			}
+			push_a(b, a);
+			swap_a(*a);
 		}
 	}
 }
 
-void	push_first(t_stack **a, t_stack **b)
+void	join_stack(t_stack **b, t_stack **a)
 {
-	int big;
-	int size;
+	int	big;
 
-	size = ft_stacksize(*b);
-	big = find_big(b, size);
-	while ((*b)->index != big)
-		rotate_b(b);
-	push_a(b, a);
+	while ((*b))
+	{
+		big = find_big(b);
+		if (chr_cost_index(b, big) > ft_stacksize(*b) / 2)
+		{
+			while ((*b)->index != big && (*b)->index != (big - 1))
+				reverse_rotate_b(b);
+		}
+		else
+		{
+			while ((*b)->index != big && (*b)->index != (big - 1))
+				rotate_b(b);
+		}
+		push_a(b, a);
+		check_isbig(b, a, big);
+	}
 }
 
 static void	short_sort(t_stack **a, t_stack **b, int size)
 {
 	int	big;
 
-	big = find_big(a, size);
+	big = find_big(a);
 	if (size == 2)
 		rotate_a(a);
 	else if (size == 3)
@@ -80,10 +88,12 @@ void	go_sort(t_stack **a, t_stack **b)
 		{
 			short_sort(a, b, size);
 			return ;
-		}	
+		}
 		else
 		{
 			butter_sort(a, b, size);
+			join_stack(b, a);
+			end_sort(a);
 			return ;
 		}
 	}

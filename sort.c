@@ -6,7 +6,7 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 07:47:35 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/10 07:47:37 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:34:33 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	find_small(t_stack **x)
 {
-	t_stack *head;
-	int		small;
+	t_stack		*head;
+	int			small;
 
 	head = *x;
-	small =	head->value;
+	small = head->value;
 	while (head->next)
 	{
 		head = head->next;
@@ -28,29 +28,30 @@ int	find_small(t_stack **x)
 	return (small);
 }
 
-int	find_big(t_stack **x, int size)
+int	find_big(t_stack **x)
 {
-	t_stack *head;
-	int		big;
+	t_stack		*head;
+	int			big;
 
 	head = *x;
-	while (head)
+	big = head->index;
+	while (head->next)
 	{
-		if (head->index == (size - 1))
-			big = head->index;
 		head = head->next;
+		if (head->index > big)
+			big = head->index;
 	}
 	return (big);
 }
 
-int		chr_cost_value(t_stack **x, int nbr)
+int	chr_cost_value(t_stack **x, int nbr)
 {
-	t_stack *chr;
-	int		cost;
+	t_stack		*chr;
+	int			cost;
 
 	chr = *x;
 	cost = 0;
-	while(chr->value != nbr)
+	while (chr->value != nbr)
 	{
 		cost++;
 		chr = chr->next;
@@ -58,22 +59,22 @@ int		chr_cost_value(t_stack **x, int nbr)
 	return (cost);
 }
 
-int	chr_value(t_stack **x, int value)
+int	chr_next_value(t_stack **x, int value)
 {
-	t_stack *head;
-	int		cost;
-	int		save;
-	int		result;
+	t_stack		*head;
+	int			cost;
+	int			save;
+	int			result;
 
 	head = *x;
 	cost = 0;
 	save = ft_stacksize(*x);
 	while (head)
 	{
-		if(value <= head->value)
+		if (value <= head->value)
 		{
 			cost = chr_cost_value(x, head->value);
-			if(save > cost || head->value < result)
+			if (save > cost || head->value < result)
 			{
 				save = cost;
 				result = head->value;
@@ -84,7 +85,7 @@ int	chr_value(t_stack **x, int value)
 	return (result);
 }
 
-int	sorted_value(t_stack **x, int index)
+/*int	sorted_value(t_stack **x, int index)
 {
 	t_stack	*head;
 
@@ -100,4 +101,4 @@ int	sorted_value(t_stack **x, int index)
 			return (0);
 	}	
 	return(1);
-}
+}*/

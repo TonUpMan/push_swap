@@ -6,7 +6,7 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 09:52:44 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/03 14:24:00 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:31:12 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ int	ft_check_over(int nbr, char *str)
 		return (0);
 	}
 }
+
 int	ft_check_double(t_stack **a)
 {
-	t_stack *check;
-	t_stack *head;
+	t_stack		*check;
+	t_stack		*head;
 
 	if (!*a)
 		return (1);
