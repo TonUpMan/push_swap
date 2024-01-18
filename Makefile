@@ -1,7 +1,12 @@
 GREEN =\033[32m
 RESET =\033[0m
 
-SRCS = push_swap.c \
+SRC_DIR = src
+SRC_BONUS_DIR = src_bonus
+OBJ_DIR = obj
+OBJ_BONUS_DIR = obj_bonus
+
+SRCS := push_swap.c \
 	parsing.c \
 	arg_treat.c \
 	stack_treat.c \
@@ -15,42 +20,80 @@ SRCS = push_swap.c \
 	butter_sort.c \
 	index_utils.c \
 	sort_utils.c \
+
+SRCS_BONUS := push_swap_bonus.c \
+	parsing_bonus.c \
+	arg_treat_bonus.c \
+	stack_treat_bonus.c \
+	stack_utils_bonus.c \
+	command_bonus.c \
+	command_stack_bonus.c \
+	command_rotate_bonus.c \
+	multi_command_bonus.c \
+	prepare_sort_bonus.c \
+	little_sort_bonus.c \
+	butter_sort_bonus.c \
+	index_utils_bonus.c \
+	sort_utils_bonus.c \
 	
-OBJS = $(SRCS:.c=.o)
+SRCS := $(SRCS:%.c=$(SRC_DIR)/%.c)	
+SRCS_BONUS := $(SRCS_BONUS:%.c=$(SRC_BONUS_DIR)/%.c)
+
+OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJ_BONUS := $(SRCS_BONUS:$(SRC_BONUS_DIR)/%.c=$(OBJ_BONUS_DIR)/%.o)
+
 
 NAME = push_swap
+NAME_BONUS = checker
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -Iincludes -g
+CFLAGS = -Wall -Wextra -Werror -I include -g
 
-all : $(NAME)
+all: $(NAME)
 
-$(NAME) : $(OBJS)
+bonus: $(NAME_BONUS)
+
+$(NAME): $(OBJS)
 	@echo "LIBFT COMPILATION :\c"
 	@${MAKE} -C ./libft >/dev/null
 	@echo "$(GREEN)COMPILED$(RESET)"
 	@echo "Push_Swap : \c"
-	@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a -o ${NAME}
+	@${CC} ${OBJS} ./libft/libft.a -o ${NAME}
 	@echo "$(GREEN)COMPILED$(RESET)"
 	@echo "Norm error detected : \c"
 	@echo | norminette | grep "Error" | wc -l
 
-%.o : %.c
-	@$(CC) $(CFLAGS) -c $(SRCS) ./libft/libft.h
+$(NAME_BONUS): $(OBJ_BONUS)
+	@echo "LIBFT COMPILATION :\c"
+	@${MAKE} -C ./libft >/dev/null
+	@echo "$(GREEN)COMPILED$(RESET)"
+	@echo "checker : \c"
+	@${CC} ${OBJS} ./libft/libft.a -o ${NAME_BONUS}
+	@echo "$(GREEN)COMPILED$(RESET)"
+	@echo "Norm error detected : \c"
+	@echo | norminette | grep "Error" | wc -l
 
-clean : 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -c -o $@ $<
+
+$(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -c -o $@ $<
+
+clean: 
 	@echo "All files.o :\c" 
 	@${MAKE} -C ./libft clean >/dev/null
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJS) $(OBJ_DIR) $(OBJ_BONUS) $(OBJ_BONUS_DIR)
 	@echo "$(GREEN)REMOVED$(RESET)"
 
-fclean : clean
-	@echo "Push_Swap & libft.a :\c"
+fclean: clean
+	@echo "exec :\c"
 	@${MAKE} -C ./libft fclean >/dev/null
-	@rm -rf $(NAME)
+	@rm -f $(NAME) $(NAME_BONUS)
 	@echo "$(GREEN)REMOVED$(RESET)"
 
-re : fclean all
+re: fclean all
 
-PHONY. : re fclean clean all
+PHONY.: re fclean clean all
