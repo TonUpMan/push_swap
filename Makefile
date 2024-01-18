@@ -4,18 +4,17 @@ RESET =\033[0m
 SRCS = push_swap.c \
 	parsing.c \
 	arg_treat.c \
+	stack_treat.c \
 	stack_utils.c \
 	command.c \
 	command_stack.c \
 	command_rotate.c \
 	multi_command.c \
-	stack_treat.c \
 	prepare_sort.c \
 	little_sort.c \
 	butter_sort.c \
 	index_utils.c \
-	sort.c \
-	pivot.c \
+	sort_utils.c \
 	
 OBJS = $(SRCS:.c=.o)
 
@@ -28,7 +27,6 @@ CFLAGS = -Wall -Wextra -Werror -Iincludes -g
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	@echo | cat "./banners/push.txt"
 	@echo "LIBFT COMPILATION :\c"
 	@${MAKE} -C ./libft >/dev/null
 	@echo "$(GREEN)COMPILED$(RESET)"

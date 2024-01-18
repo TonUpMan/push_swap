@@ -6,7 +6,7 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 09:20:38 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/17 14:45:00 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/18 12:40:23 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@ void	ft_free_stack(t_stack **x)
 {
 	ft_stackclear(x);
 	free(x);
+}
+
+void	free_tab(char **arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i])
+	{
+		free(arg[i]);
+		i++;
+	}
+	free(arg);
 }
 
 int	main(int argc, char **argv)
@@ -31,11 +44,14 @@ int	main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		arg = ft_treat(argc, argv);
-		if (!check_if(arg))
+		if (!check_if(arg, a, b))
 			return (0);
-		init_stack_a(a, arg);
-		if (a == NULL)
+		if (!init_stack_a(a, arg))
+		{
+			ft_free_stack(a);
+			ft_free_stack(b);
 			return (0);
+		}
 		go_sort(a, b);
 	}
 	ft_free_stack(a);

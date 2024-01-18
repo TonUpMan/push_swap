@@ -23,12 +23,16 @@ static int	ft_range(int size)
 	return (size_range);
 }
 
-static void	push_value(t_stack **a, t_stack **b, int range, int median)
+static void	push_value(t_stack **a, t_stack **b, int range, int size_range)
 {
 	int	i;
+	int	median;
+	int	small;
 
-	i = 0;
-	while (i < range)
+	i = range;
+	small = range - size_range;
+	median = range - (size_range / 2);
+	while (i > small)
 	{
 		if ((*a)->index <= range)
 		{
@@ -39,7 +43,7 @@ static void	push_value(t_stack **a, t_stack **b, int range, int median)
 				push_b(a, b);
 				rotate_b(b);
 			}
-			i++;
+			i--;
 		}
 		else
 			rotate_a(a);
@@ -48,28 +52,22 @@ static void	push_value(t_stack **a, t_stack **b, int range, int median)
 
 static void	push_rest(t_stack **a, t_stack **b, int size)
 {
-	int	small;
-	int	median;
 	int	range;
 
-	small = ft_stacksize(*b);
-	range = small + size;
-	median = range - (size / 2);
-	push_value(a, b, range, median);
+	range = ft_stacksize(*b) + size;
+	push_value(a, b, range, size);
 }
 
 void	butter_sort(t_stack **a, t_stack **b, int size)
 {
 	int	range;
-	int	median;
 	int	size_range;
 
 	range = ft_range(size);
 	size_range = range;
 	while (size >= size_range)
 	{
-		median = range - (size_range / 2);
-		push_value(a, b, range, median);
+		push_value(a, b, range, size_range);
 		size -= size_range;
 		range += size_range;
 	}

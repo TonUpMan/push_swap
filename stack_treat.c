@@ -70,29 +70,30 @@ int	ft_isorted(t_stack **a)
 	return (i);
 }
 
-void	init_stack_a(t_stack **a, char **arg)
+int	init_stack_a(t_stack **a, char **arg)
 {
 	t_stack	*new;
 	int		i;
 	int		check;
 
 	i = 0;
-	check = 0;
+	check = 1;
 	while (arg[i])
 	{
 		new = ft_newstack(ft_atoi(arg[i]), i);
 		if (!ft_check_over(new->value, arg[i]))
-			check = 1;
+			check = 0;
 		ft_add_backstack(a, new);
 		if (!ft_check_double(a))
-			check = 1;
+			check = 0;
 		free(arg[i]);
 		i++;
 	}
 	free(arg);
-	if (check == 1)
+	if (check == 0)
 	{
-		ft_stackclear(a);
-		ft_putstr_fd("error", 2);
+		ft_putstr_fd("Error\n", 2);
+		return (0);
 	}
+	return (1);
 }

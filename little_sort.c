@@ -6,7 +6,7 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 13:36:23 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/17 14:16:42 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/18 12:34:46 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	end_sort(t_stack **a)
 
 void	sort_three(t_stack **a, int big)
 {
-	t_stack	*head;
+	t_stack		*head;
 
 	while (!ft_isorted(a))
 	{

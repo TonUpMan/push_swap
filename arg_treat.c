@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	ft_trim(char **result)
+void	ft_trim(char **result)
 {
 	char	*trimed;
 	int		i;
@@ -55,6 +55,5 @@ char	**ft_treat(int argc, char **argv)
 	}
 	result = ft_split(args, ' ');
 	free(args);
-	ft_trim(result);
 	return (result);
 }

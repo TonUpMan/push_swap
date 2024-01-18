@@ -79,28 +79,30 @@ static int	check_if_digit(char *arg)
 		if (isvalid(arg[i]))
 			i++;
 		else
-			return (2);
+			return (0);
 	}
 	if (count > 1)
-		return (2);
+		return (0);
 	return (1);
 }
 
-int	check_if(char **arg)
+int	check_if(char **arg, t_stack **a, t_stack **b)
 {
-	int	check;
 	int	i;
 
 	i = 0;
 	while (arg[i])
 	{
-		check = check_if_digit(arg[i]);
-		if (check == 2)
+		if (!check_if_digit(arg[i]))
 		{
-			ft_putstr_fd("error", 2);
+			free_tab(arg);
+			ft_free_stack(a);
+			ft_free_stack(b);
+			ft_putstr_fd("Error\n", 2);
 			return (0);
 		}
 		i++;
 	}
+	ft_trim(arg);
 	return (1);
 }

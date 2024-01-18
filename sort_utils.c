@@ -1,25 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index_utils.c                                      :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 12:37:29 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/18 12:39:35 by qdeviann         ###   ########.fr       */
+/*   Created: 2024/01/10 07:47:35 by qdeviann          #+#    #+#             */
+/*   Updated: 2024/01/17 14:34:33 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	chr_cost_index(t_stack **x, int index)
+int	find_small(t_stack **x)
+{
+	t_stack		*head;
+	int			small;
+
+	head = *x;
+	small = head->value;
+	while (head->next)
+	{
+		head = head->next;
+		if (head->value < small)
+			small = head->value;
+	}
+	return (small);
+}
+
+int	find_big(t_stack **x)
+{
+	t_stack		*head;
+	int			big;
+
+	head = *x;
+	big = head->index;
+	while (head->next)
+	{
+		head = head->next;
+		if (head->index > big)
+			big = head->index;
+	}
+	return (big);
+}
+
+int	chr_cost_value(t_stack **x, int nbr)
 {
 	t_stack		*chr;
 	int			cost;
 
 	chr = *x;
 	cost = 0;
-	while (chr->index != index)
+	while (chr->value != nbr)
 	{
 		cost++;
 		chr = chr->next;
@@ -27,7 +59,7 @@ int	chr_cost_index(t_stack **x, int index)
 	return (cost);
 }
 
-int	chr_next_index(t_stack **x, int index)
+int	chr_next_value(t_stack **x, int value)
 {
 	t_stack		*head;
 	int			cost;
@@ -37,39 +69,18 @@ int	chr_next_index(t_stack **x, int index)
 	head = *x;
 	cost = 0;
 	save = ft_stacksize(*x);
-	result = 0;
 	while (head)
 	{
-		if (index < head->index)
+		if (value <= head->value)
 		{
-			cost = chr_cost_index(x, head->index);
-			if (save > cost || head->index < result)
+			cost = chr_cost_value(x, head->value);
+			if (save > cost || head->value < result)
 			{
 				save = cost;
-				result = head->index;
+				result = head->value;
 			}
 		}
 		head = head->next;
 	}
 	return (result);
-}
-
-void	index_sort(t_stack **a, int size)
-{
-	t_stack		*head;
-	int			next;
-	int			i;
-
-	i = 0;
-	next = find_small(a);
-	while (i < size)
-	{
-		head = *a;
-		next = chr_next_value(a, next);
-		while (head->value != next)
-			head = head->next;
-		head->index = i;
-		next++;
-		i++;
-	}
 }
