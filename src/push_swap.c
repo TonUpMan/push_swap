@@ -12,6 +12,12 @@
 
 #include "push_swap.h"
 
+void	ft_free_stacks(t_stack **x, t_stack **y)
+{
+	ft_free_stack(x);
+	ft_free_stack(y);
+}
+
 void	ft_free_stack(t_stack **x)
 {
 	ft_stackclear(x);
@@ -38,23 +44,23 @@ int	main(int argc, char **argv)
 	char		**arg;
 
 	b = malloc(sizeof(t_stack *));
+	if (!b)
+		return (0);
 	a = malloc(sizeof(t_stack *));
+	if (!a)
+	{
+		free(b);
+		return (0);
+	}
 	*a = NULL;
 	*b = NULL;
 	if (argc >= 2)
 	{
 		arg = ft_treat(argc, argv);
-		if (!check_if(arg, a, b))
-			return (0);
-		if (!init_stack_a(a, arg))
-		{
-			ft_free_stack(a);
-			ft_free_stack(b);
-			return (0);
-		}
+		check_if(arg, a, b);
+		init_stack_a(a, b, arg);
 		go_sort(a, b);
 	}
-	ft_free_stack(a);
-	ft_free_stack(b);
+	ft_free_stacks(a, b);
 	return (0);
 }

@@ -70,7 +70,7 @@ int	ft_isorted(t_stack **a)
 	return (i);
 }
 
-int	init_stack_a(t_stack **a, char **arg)
+void	init_stack_a(t_stack **a, t_stack **b, char **arg)
 {
 	t_stack	*new;
 	int		i;
@@ -92,8 +92,8 @@ int	init_stack_a(t_stack **a, char **arg)
 	free(arg);
 	if (check == 0)
 	{
+		ft_free_stacks(a, b);
 		ft_putstr_fd("Error\n", 2);
-		return (0);
+		exit(0);
 	}
-	return (1);
 }

@@ -26,28 +26,6 @@ t_stack	*ft_newstack(int value, int index)
 	return (new);
 }
 
-int	ft_isrevsorted(t_stack **b)
-{
-	t_stack	*check;
-	t_stack	*head;
-	int		i;
-
-	head = *b;
-	i = 1;
-	while (head != NULL)
-	{
-		check = head->next;
-		while (check != NULL)
-		{
-			if (head->index < check->index)
-				i = 0;
-			check = check->next;
-		}
-		head = head->next;
-	}
-	return (i);
-}
-
 int	ft_isorted(t_stack **a)
 {
 	t_stack		*check;
@@ -61,7 +39,7 @@ int	ft_isorted(t_stack **a)
 		check = head->next;
 		while (check != NULL)
 		{
-			if (head->index > check->index)
+			if (head->value > check->value)
 				i = 0;
 			check = check->next;
 		}
@@ -70,7 +48,7 @@ int	ft_isorted(t_stack **a)
 	return (i);
 }
 
-int	init_stack_a(t_stack **a, char **arg)
+void	init_stack_a(t_stack **a, t_stack **b, char **arg)
 {
 	t_stack	*new;
 	int		i;
@@ -92,8 +70,8 @@ int	init_stack_a(t_stack **a, char **arg)
 	free(arg);
 	if (check == 0)
 	{
+		ft_free_stacks(a, b);
 		ft_putstr_fd("Error\n", 2);
-		return (0);
+		exit (0);
 	}
-	return (1);
 }

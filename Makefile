@@ -30,11 +30,8 @@ SRCS_BONUS := push_swap_bonus.c \
 	command_stack_bonus.c \
 	command_rotate_bonus.c \
 	multi_command_bonus.c \
-	prepare_sort_bonus.c \
-	little_sort_bonus.c \
-	butter_sort_bonus.c \
-	index_utils_bonus.c \
-	sort_utils_bonus.c \
+	checker_bonus.c \
+	do_action_bonus.c \
 	
 SRCS := $(SRCS:%.c=$(SRC_DIR)/%.c)	
 SRCS_BONUS := $(SRCS_BONUS:%.c=$(SRC_BONUS_DIR)/%.c)
@@ -69,7 +66,7 @@ $(NAME_BONUS): $(OBJ_BONUS)
 	@${MAKE} -C ./libft >/dev/null
 	@echo "$(GREEN)COMPILED$(RESET)"
 	@echo "checker : \c"
-	@${CC} ${OBJS} ./libft/libft.a -o ${NAME_BONUS}
+	@${CC} ${OBJ_BONUS} ./libft/libft.a -o ${NAME_BONUS}
 	@echo "$(GREEN)COMPILED$(RESET)"
 	@echo "Norm error detected : \c"
 	@echo | norminette | grep "Error" | wc -l

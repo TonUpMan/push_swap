@@ -6,11 +6,17 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 09:20:38 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/18 14:30:57 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:14:37 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
+
+void	ft_free_stacks(t_stack **x, t_stack **y)
+{
+	ft_free_stack(x);
+	ft_free_stack(y);
+}
 
 void	ft_free_stack(t_stack **x)
 {
@@ -38,23 +44,23 @@ int	main(int argc, char **argv)
 	char		**arg;
 
 	b = malloc(sizeof(t_stack *));
+	if (!b)
+		return (0);
 	a = malloc(sizeof(t_stack *));
+	if (!a)
+	{
+		free(b);
+		return (0);
+	}
 	*a = NULL;
 	*b = NULL;
 	if (argc >= 2)
 	{
 		arg = ft_treat(argc, argv);
-		if (!check_if(arg, a, b))
-			return (0);
-		if (!init_stack_a(a, arg))
-		{
-			ft_free_stack(a);
-			ft_free_stack(b);
-			return (0);
-		}
-		go_sort(a, b);
+		check_if(arg, a, b);
+		init_stack_a(a, b, arg);
+		go_check(a, b);
 	}
-	ft_free_stack(a);
-	ft_free_stack(b);
+	ft_free_stacks(a, b);
 	return (0);
 }

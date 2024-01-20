@@ -86,7 +86,7 @@ static int	check_if_digit(char *arg)
 	return (1);
 }
 
-int	check_if(char **arg, t_stack **a, t_stack **b)
+void	check_if(char **arg, t_stack **a, t_stack **b)
 {
 	int	i;
 
@@ -99,10 +99,9 @@ int	check_if(char **arg, t_stack **a, t_stack **b)
 			ft_free_stack(a);
 			ft_free_stack(b);
 			ft_putstr_fd("Error\n", 2);
-			return (0);
+			exit (0);
 		}
 		i++;
 	}
 	ft_trim(arg);
-	return (1);
 }
