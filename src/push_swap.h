@@ -25,7 +25,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }t_stack;
 
-char	**ft_treat(int argc, char **argv);
+char	**ft_treat(int argc, char **argv, t_stack **a, t_stack **b);
 int		ft_check_over(int nbr, char *str);
 int		ft_check_double(t_stack **a);
 void	check_if(char **arg, t_stack **a, t_stack **b);

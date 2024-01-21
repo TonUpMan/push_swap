@@ -12,82 +12,79 @@
 
 #include "push_swap_bonus.h"
 
-static char	*ft_trim_command(char *command)
+static char	*ft_trim_command(char *cmd)
 {
 	char	*trimed;
 
-	trimed = ft_strtrim(command, " \n");
-	free(command);
-	command = ft_substr(trimed, 0, ft_strlen(trimed));
+	trimed = ft_strtrim(cmd, " \n");
+	free(cmd);
+	cmd = ft_substr(trimed, 0, ft_strlen(trimed));
 	free(trimed);
-	return (command);
+	return (cmd);
 }
 
-void	check_command(char	*command)
+void	check_command(char *cmd, t_stack **a, t_stack **b)
 {
 	int	i;
 
 	i = 0;
-	if (command[i] == 'r' && ft_strchr("abr", command[i + 1]))
+	if (cmd[i] == 'r' && ft_strchr("abr", cmd[i + 1]) && ft_strlen(cmd) == 2)
 		return ;
-	if (command[i] == 's' && ft_strchr("abs", command[i + 1]))
+	if (cmd[i] == 's' && ft_strchr("abs", cmd[i + 1]))
 		return ;
-	if (command[i] == 'p' && ft_strchr("ab", command[i + 1]))
+	if (cmd[i] == 'p' && ft_strchr("ab", cmd[i + 1]))
 		return ;
-	if (command[i] == 'r' && command[i + 1] == 'r')
-	{
-		if (ft_strchr("abr", command[i + 2]))
-			return ;
-	}
+	if (cmd[i] == 'r' && cmd[i + 1] == 'r' && ft_strchr("abr", cmd[i + 2]))
+		return ;
 	else
+	{
+		ft_free_stacks(a, b);
+		free(cmd);
+		ft_putstr_fd("Error\n", 2);
 		exit(0);
+	}
 }
 
-void	do_command(t_stack **a, t_stack **b, char *command)
+void	do_command(t_stack **a, t_stack **b, char *cmd)
 {
 	int	i;
 
 	i = 0;
-	if (command[i] == 'r' && ft_strlen(command) == 2)
+	if (cmd[i] == 'r' && ft_strlen(cmd) == 2)
 	{
-		do_rotate(a, b, command);
+		do_rotate(a, b, cmd);
 		return ;
 	}
-	if (command[i] == 's')
+	if (cmd[i] == 's')
 	{
-		do_swap(a, b, command);
+		do_swap(a, b, cmd);
 		return ;
 	}
-	if (command[i] == 'p')
+	if (cmd[i] == 'p')
 	{
-		do_push(a, b, command);
+		do_push(a, b, cmd);
 		return ;
 	}
-	if (command[i] == 'r' && command[i + 1] == 'r' && ft_strlen(command) == 3)
+	if (cmd[i] == 'r' && cmd[i + 1] == 'r' && ft_strlen(cmd) == 3)
 	{
-		do_reverse_rotate(a, b, command);
+		do_reverse_rotate(a, b, cmd);
 		return ;
 	}
 }
 
 void	go_check(t_stack **a, t_stack **b)
 {
-	char	*command;
+	char	*cmd;
 
-	if (ft_isorted(a))
-	{
-		ft_putstr_fd("OK\n", 1);
-		exit(0);
-	}
 	while (1)
 	{
-		command = get_next_line(0);
-		if (command)
+		cmd = get_next_line(0);
+		if (cmd)
 		{
-			command = ft_trim_command(command);
-			check_command(command);
-			do_command(a, b, command);
-			free(command);
+			cmd = ft_trim_command(cmd);
+			check_command(cmd, a, b);
+			do_command(a, b, cmd);
+			free(cmd);
 		}
 		else
 			break ;

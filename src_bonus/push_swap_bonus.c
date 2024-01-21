@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	*b = NULL;
 	if (argc >= 2)
 	{
-		arg = ft_treat(argc, argv);
+		arg = ft_treat(argc, argv, a, b);
 		check_if(arg, a, b);
 		init_stack_a(a, b, arg);
 		go_check(a, b);

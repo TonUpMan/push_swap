@@ -12,6 +12,26 @@
 
 #include "push_swap.h"
 
+static void	check_empty(int argc, char **argv, t_stack **a, t_stack **b)
+{
+	int		empty;
+	int		i;
+
+	i = 1;
+	empty = 0;
+	while (i <= (argc - 1))
+	{
+		if (!argv[i][0])
+			empty++;
+		i++;
+	}
+	if (empty == argc - 1)
+	{
+		ft_free_stacks(a, b);
+		exit(0);
+	}
+}
+
 void	ft_trim(char **result)
 {
 	char	*trimed;
@@ -40,13 +60,14 @@ static char	*ft_join(char *args, char *argv)
 	return (joined);
 }
 
-char	**ft_treat(int argc, char **argv)
+char	**ft_treat(int argc, char **argv, t_stack **a, t_stack **b)
 {
 	char	**result;
 	char	*args;
 	int		i;
 
 	i = 1;
+	check_empty(argc, argv, a, b);
 	args = ft_calloc(1, sizeof (char *));
 	while (i <= (argc - 1))
 	{
