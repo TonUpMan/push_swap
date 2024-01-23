@@ -12,23 +12,12 @@
 
 #include "push_swap.h"
 
-int	ft_check_over(int nbr, char *str)
+int	ft_check_over(int nbr)
 {
-	int		len;
-	char	*tmp;
-
-	len = ft_strlen(str);
-	tmp = ft_itoa(nbr);
-	if (!ft_strncmp(tmp, str, len))
-	{
-		free(tmp);
-		return (1);
-	}
-	else
-	{
-		free(tmp);
+	if (nbr > 2147483647 && nbr < -2147483648)
 		return (0);
-	}
+	else
+		return (1);
 }
 
 int	ft_check_double(t_stack **a)

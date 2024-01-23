@@ -14,6 +14,8 @@
 
 void	swap_all(t_stack *x, t_stack *y)
 {
+	if (ft_stacksize(x) <=1 || ft_stacksize(y) <=1)
+		return ;
 	swap(x);
 	swap(y);
 	put_command("ss\n");
@@ -21,6 +23,8 @@ void	swap_all(t_stack *x, t_stack *y)
 
 void	rotate_all(t_stack **x, t_stack**y)
 {
+	if (ft_stacksize((*x)) <=1 || ft_stacksize((*y)) <=1)
+		return ;
 	rotate(x);
 	rotate(y);
 	put_command("rr\n");
@@ -28,6 +32,8 @@ void	rotate_all(t_stack **x, t_stack**y)
 
 void	reverse_rotate_all(t_stack **x, t_stack **y)
 {
+	if (ft_stacksize((*x)) <=1 || ft_stacksize((*y)) <=1)
+		return ;
 	reverse_rotate(x);
 	reverse_rotate(y);
 	put_command("rrr\n");
