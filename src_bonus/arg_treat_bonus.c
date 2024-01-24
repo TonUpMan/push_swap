@@ -12,7 +12,7 @@
 
 #include "push_swap_bonus.h"
 
-static void	full_space(char *argv, t_stack **a, t_stack **b)
+static int	full_space(char *argv)
 {
 	int	len;
 	int check;
@@ -28,11 +28,8 @@ static void	full_space(char *argv, t_stack **a, t_stack **b)
 		i++;
 	}
 	if (len == check)
-	{
-		ft_putstr_fd("Error\n", 2);
-		ft_free_stacks(a, b);
-		exit(0);
-	}
+		return (0);
+	return (1);
 }
 
 static void	check_empty(int argc, char **argv, t_stack **a, t_stack **b)
@@ -44,16 +41,13 @@ static void	check_empty(int argc, char **argv, t_stack **a, t_stack **b)
 	empty = 0;
 	while (i <= (argc - 1))
 	{
-		full_space(argv[i], a, b);
-		if (!argv[i][0])
-			empty++;
+		if (!full_space(argv[i]))
+		{
+			ft_putstr_fd("Error\n", 2);
+			ft_free_stacks(a, b);
+			exit(0);
+		}
 		i++;
-	}
-	if (empty == argc - 1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		ft_free_stacks(a, b);
-		exit(0);
 	}
 }
 
