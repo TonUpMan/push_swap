@@ -12,6 +12,33 @@
 
 #include "push_swap.h"
 
+long int	ft_atol(const char *nptr)
+{
+	long int	tmp;
+	int			i;
+	int			n;
+
+	i = 0;
+	tmp = 0;
+	n = 0;
+	while ((nptr[i] > 8 && nptr[i] < 14) || nptr[i] == 32)
+		i++;
+	while (nptr[i] == 43 || nptr[i] == 45)
+	{
+		if (nptr[i] == 45)
+			n = -1;
+		i++;
+	}
+	while (nptr[i] > 47 && nptr[i] < 58)
+	{
+		tmp = tmp * 10 + (nptr[i] - '0');
+		i++;
+	}
+	if (n == -1)
+		tmp *= n;
+	return (tmp);
+}
+
 t_stack	*ft_newstack(int value, int index)
 {
 	t_stack	*new;
@@ -72,28 +99,20 @@ int	ft_isorted(t_stack **a)
 
 void	init_stack_a(t_stack **a, t_stack **b, char **arg)
 {
-	t_stack	*new;
-	int		i;
-	int		check;
+	t_stack		*new;
+	int			i;
+	long int	nbr;
 
 	i = 0;
-	check = 1;
 	while (arg[i])
 	{
-		new = ft_newstack(ft_atoi(arg[i]), i);
-		if (!ft_check_over(new->value))
-			check = 0;
+		nbr = ft_atol(arg[i]);
+		ft_check_over(nbr, a, b);
+		new = ft_newstack((int)nbr, i);
 		ft_add_backstack(a, new);
-		if (!ft_check_double(a))
-			check = 0;
+		ft_check_double(a, b);
 		free(arg[i]);
 		i++;
 	}
 	free(arg);
-	if (check == 0)
-	{
-		ft_free_stacks(a, b);
-		ft_putstr_fd("Error\n", 2);
-		exit(0);
-	}
 }

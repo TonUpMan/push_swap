@@ -12,21 +12,23 @@
 
 #include "push_swap.h"
 
-int	ft_check_over(int nbr)
+void	ft_check_over(long nbr, t_stack **a, t_stack **b)
 {
-	if (nbr > 2147483647 && nbr < -2147483648)
-		return (0);
-	else
-		return (1);
+	if (nbr > 2147483647 || nbr < -2147483648)
+	{
+		ft_free_stacks(a, b);
+		ft_putstr_fd("Error\n", 2);
+		exit(0);
+	}
 }
 
-int	ft_check_double(t_stack **a)
+void	ft_check_double(t_stack **a, t_stack **b)
 {
 	t_stack		*check;
 	t_stack		*head;
 
 	if (!*a)
-		return (1);
+		return ;
 	head = *a;
 	while (head != NULL)
 	{
@@ -34,12 +36,15 @@ int	ft_check_double(t_stack **a)
 		while (check != NULL)
 		{
 			if (head->value == check->value)
-				return (0);
+			{
+				ft_free_stacks(a, b);
+				ft_putstr_fd("Error\n", 2);
+				exit(0);
+			}
 			check = check->next;
 		}
 		head = head->next;
 	}
-	return (1);
 }
 
 static int	isvalid(int c)
