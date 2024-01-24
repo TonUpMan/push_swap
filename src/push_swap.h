@@ -26,8 +26,8 @@ typedef struct s_stack
 }t_stack;
 
 char	**ft_treat(int argc, char **argv, t_stack **a, t_stack **b);
-void	ft_check_over(long nbr, t_stack **a, t_stack **b);
-void	ft_check_double(t_stack **a, t_stack **b);
+void	ft_check_over(long nbr, char **arg, t_stack **a, t_stack **b);
+void	ft_check_double(t_stack **a, t_stack **b, char **arg);
 void	check_if(char **arg, t_stack **a, t_stack **b);
 void	ft_trim(char **result);
 t_stack	*ft_newstack(int value, int index);

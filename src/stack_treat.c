@@ -107,12 +107,11 @@ void	init_stack_a(t_stack **a, t_stack **b, char **arg)
 	while (arg[i])
 	{
 		nbr = ft_atol(arg[i]);
-		ft_check_over(nbr, a, b);
+		ft_check_over(nbr, arg, a, b);
 		new = ft_newstack((int)nbr, i);
 		ft_add_backstack(a, new);
-		ft_check_double(a, b);
-		free(arg[i]);
+		ft_check_double(a, b, arg);
 		i++;
 	}
-	free(arg);
+	free_tab(arg);
 }

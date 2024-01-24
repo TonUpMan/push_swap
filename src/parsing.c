@@ -12,17 +12,18 @@
 
 #include "push_swap.h"
 
-void	ft_check_over(long nbr, t_stack **a, t_stack **b)
+void	ft_check_over(long nbr, char **arg, t_stack **a, t_stack **b)
 {
 	if (nbr > 2147483647 || nbr < -2147483648)
 	{
+		free_tab(arg);
 		ft_free_stacks(a, b);
 		ft_putstr_fd("Error\n", 2);
 		exit(0);
 	}
 }
 
-void	ft_check_double(t_stack **a, t_stack **b)
+void	ft_check_double(t_stack **a, t_stack **b, char **arg)
 {
 	t_stack		*check;
 	t_stack		*head;
@@ -37,6 +38,7 @@ void	ft_check_double(t_stack **a, t_stack **b)
 		{
 			if (head->value == check->value)
 			{
+				free_tab(arg);
 				ft_free_stacks(a, b);
 				ft_putstr_fd("Error\n", 2);
 				exit(0);
@@ -68,14 +70,18 @@ static int	check_if_digit(char *arg)
 	count = 0;
 	while (arg[i] != '\0')
 	{
-		if (arg[i] == 43 || arg[i] == 45)
+		if ((arg[i] == 43 || arg[i] == 45) && i == 0)
 			count++;
+		else if ((arg[i] == 43 || arg[i] == 45) && i != 0)
+			return (0);
 		if (isvalid(arg[i]))
 			i++;
 		else
 			return (0);
 	}
 	if (count > 1)
+		return (0);
+	if (count == 1 && ft_strlen(arg) == 1)
 		return (0);
 	return (1);
 }
