@@ -6,7 +6,7 @@
 /*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:39:04 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/01/02 17:37:03 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:34:20 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	full_space(char *argv)
 {
 	int	len;
-	int check;
+	int	check;
 	int	i;
 
 	len = ft_strlen(argv);
