@@ -42,12 +42,14 @@ static void	check_empty(int argc, char **argv, t_stack **a, t_stack **b)
 	while (i <= (argc - 1))
 	{
 		if (!full_space(argv[i]))
-		{
-			ft_putstr_fd("Error\n", 2);
-			ft_free_stacks(a, b);
-			exit(0);
-		}
+			empty++;
 		i++;
+	}
+	if (empty == (argc - 1))
+	{
+		ft_putstr_fd("Error\n", 2);
+		ft_free_stacks(a, b);
+		exit(0);
 	}
 }
 
