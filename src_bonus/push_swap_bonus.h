@@ -29,6 +29,7 @@ char	**ft_treat(int argc, char **argv, t_stack **a, t_stack **b);
 void	ft_check_over(long nbr, char **arg, t_stack **a, t_stack **b);
 void	ft_check_double(t_stack **a, t_stack **b, char **arg);
 void	check_if(char **arg, t_stack **a, t_stack **b);
+int		full_space(char *argv);
 void	ft_trim(char **result);
 void	go_check(t_stack **a, t_stack **b);
 void	check_command(char	*command, t_stack **a, t_stack **b);
