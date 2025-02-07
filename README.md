@@ -23,14 +23,14 @@ The project limits the operations we could perform on the numbers in the stack. 
 <h2> ❔ What Algorithm to use ❔</h2>
 When exploring sorting algorithms, you'll find there are plenty of options, each with its own strengths and weaknesses. Personally, I chose the Butterfly Sort, named for the shapes it produces in a visualizer.
 
-The concept is straightforward (it's part of the "divide and conquer" family). Each number is assigned an index that represents its final position in the sorted list. Then, the stack is divided into 4 parts (or more, depending on the total number of numbers to sort). Each part corresponds to a range of indices. For example, if we have 200 numbers to sort and divide them into 4 parts:
+The concept is simple (it's part of the "divide and conquer" family). Each number is assigned an index that represents its final position in the sorted list. Then, the stack is divided into 4 parts (or more, depending on the total number of numbers to sort). Each part corresponds to a range of index. For example, if we have 200 numbers to sort and divide them into 4 parts:
 
 - Part 1: Indices 0–50<br>
 - Part 2: Indices 51–100<br>
 - Part 3: Indices 101–150<br>
 - Part 4: Indices 151–200<br>
 
-Each part is further divided into two subgroups based on the median of its indices. When pushing numbers into the second stack, a number's index determines the operation:
+Each part is further divided into two subgroups based on the median of its index. When pushing numbers into the second stack, a number's index determines the operation:
 
 - If the index is greater than the median, use pb (push to stack B).
 - If the index is less than or equal to the median, use pb followed by rb (rotate stack B).
